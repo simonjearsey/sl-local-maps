@@ -1,40 +1,49 @@
 [
   {
-    "title": "Gamlebovägen 5B |",
+    "title": "Gamlebovägen 5B",
     "location": "Hallstavik, Norrtälje kommun",
     "price": "675 000 kr",
     "size": "49,7 m²",
     "rooms": "2 rum",
-    "source": "web_search_snippet"
+    "source": "web_search_snippet",
+    "source_portal": "hemnet"
   },
   {
-    "title": "Hallstavik listing |",
+    "title": "Hallstavik listing",
     "location": "Hallstavik, Norrtälje kommun",
     "price": "695 000 kr",
     "size": "64 m²",
     "rooms": "3 rum",
-    "source": "web_search_snippet"
+    "source": "web_search_snippet",
+    "source_portal": "hemnet"
   },
   {
-    "title": "Hallstavik villa |",
+    "title": "Hallstavik villa",
     "location": "Hallstavik, Norrtälje kommun",
     "price": "2 195 000 kr",
     "size": "120 + 60 m²",
     "rooms": "6 rum",
-    "source": "web_search_snippet"
+    "source": "web_search_snippet",
+    "source_portal": "hemnet"
   },
   {
-    "title": "Hallstavik home |",
+    "title": "Linnéavägen 5",
     "location": "Hallstavik, Norrtälje kommun",
-    "price": "2 495 000 kr",
-    "source": "web_search_snippet"
+    "rooms": "5 rum",
+    "property_type": "Villa",
+    "listing_url": "https://www.hemnet.se/bostad/villa-5rum-centrala-hallstavik-norrtalje-kommun-linneavagen-5-21572135#kalkyler",
+    "source": "manual_url",
+    "source_portal": "hemnet"
   },
   {
-    "title": "Bro/Österhagen villa |",
+    "title": "Dagsverkarvägen 9",
     "location": "Bro/Österhagen, Upplands-Bro kommun",
     "price": "6 995 000 kr",
     "size": "171 m²",
     "rooms": "6 rum",
-    "source": "web_search_snippet"
+    "property_type": "Villa",
+    "listing_url": "https://www.hemnet.se/bostad/villa-6rum-bro-osterhagen-upplands-bro-kommun-dagsverkarvagen-9-21514635",
+    "source": "web_search_snippet",
+    "source_portal": "hemnet"
   }
 ]

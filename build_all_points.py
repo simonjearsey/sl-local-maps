@@ -2,125 +2,22 @@
 from __future__ import annotations
 
 import json
-import re
 import sqlite3
-import unicodedata
-from dataclasses import dataclass
-from difflib import SequenceMatcher
 from pathlib import Path
+
+from listing_pipeline import LISTINGS_JSON_OUT, TRANSPORT_DB_PATH, build_listing_artifacts
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE_DIR = ROOT / "sl-map-site"
-DB_PATH = ROOT / "sl-db" / "sl_transport.sqlite"
-HEMNET_PATH = ROOT / "hemnet-scrape" / "listings_final.json"
-HEMNET_SUPPLEMENTAL_PATH = SITE_DIR / "sources" / "listings_supplemental.json"
 DATA_DIR = SITE_DIR / "data"
-
 STOPS_OUT = DATA_DIR / "sl-stop-points.json"
-HEMNET_OUT = DATA_DIR / "hemnet-listings.json"
-
-
-RENOVATED_RE = re.compile(r"\b(renoverad|renoverat|renoverade|renovering|nyrenoverad|nyrenoverat|totalrenoverad|totalrenoverat|topprenoverad|smakfullt renoverad|stambytt|helrenoverad|helrenoverat)\b", re.IGNORECASE)
-NEW_RE = re.compile(r"\b(nybyggnadsprojekt|nyproduktion|nybyggd|nybyggt|svanenmärkt|nytt grannskap)\b", re.IGNORECASE)
-
-
-def normalize(text: str) -> str:
-    text = (text or "").lower().strip()
-    text = text.replace("stockholms kommun", "")
-    text = text.replace("kommun", "")
-    text = re.sub(r"\([^)]*\)", " ", text)
-    text = text.replace("/", " ")
-    text = re.sub(r"\s*-\s*", " ", text)
-    for word in ["centrala", "norra", "sodra", "vastra", "ostra"]:
-        text = re.sub(rf"\b{word}\b", " ", text)
-    text = " ".join(text.split())
-    text = unicodedata.normalize("NFKD", text)
-    text = "".join(ch for ch in text if not unicodedata.combining(ch))
-    return text
-
-
-@dataclass(frozen=True)
-class Place:
-    name: str
-    lat: float
-    lon: float
-    kind: str
-    norm: str
-
-
-def location_candidates(location: str) -> list[str]:
-    base = (location or "").split(",")[0].strip()
-    parts = [base]
-    if " - " in base:
-        parts.extend(p.strip() for p in base.split(" - ") if p.strip())
-    if "/" in base:
-        parts.extend(p.strip() for p in base.split("/") if p.strip())
-
-    out: list[str] = []
-    seen: set[str] = set()
-    for part in parts:
-        candidate = normalize(part)
-        if candidate and candidate not in seen:
-            seen.add(candidate)
-            out.append(candidate)
-    return out
-
-
-def classify_listing(listing: dict) -> str:
-    tags = " ".join(listing.get("tags") or [])
-    text = " ".join(part for part in [listing.get("title", ""), listing.get("blurb", ""), tags] if part)
-    if NEW_RE.search(text):
-        return "new"
-    if RENOVATED_RE.search(text):
-        return "renovated"
-    return "old"
-
-
-def match_location(location: str, places: list[Place]) -> dict | None:
-    if not location:
-        return None
-
-    common_noise = {"centrum", "kommun", "strandpark"}
-    best: tuple[float, Place, str] | None = None
-
-    for candidate in location_candidates(location):
-        candidate_tokens = set(candidate.split()) - common_noise
-        for place in places:
-            score = 0.0
-            if candidate == place.norm:
-                score = 1.0
-            else:
-                place_tokens = set(place.norm.split()) - common_noise
-                if place.norm.startswith(candidate) or candidate.startswith(place.norm):
-                    score = max(score, 0.94)
-                if candidate_tokens and candidate_tokens <= place_tokens:
-                    score = max(score, 0.93)
-                if place_tokens and place_tokens <= candidate_tokens:
-                    score = max(score, 0.90)
-                score = max(score, SequenceMatcher(None, candidate, place.norm).ratio() * 0.88)
-            if best is None or score > best[0]:
-                best = (score, place, candidate)
-
-    if best is None or best[0] < 0.88:
-        return None
-
-    score, place, candidate = best
-    return {
-        "lat": place.lat,
-        "lon": place.lon,
-        "matched_name": place.name,
-        "matched_kind": place.kind,
-        "match_score": round(score, 3),
-        "match_query": candidate,
-    }
-
 
 HTML = """<!DOCTYPE html>
 <html lang=\"en\">
 <head>
   <meta charset=\"UTF-8\" />
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
-  <title>SL all stop points</title>
+  <title>SL stop points and property listings</title>
   <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.css\" />
   <style>
     :root {
@@ -132,16 +29,16 @@ HTML = """<!DOCTYPE html>
       --text: #e8edf7;
       --stop: #ff6b6b;
       --stop-fill: #ff9b9b;
-      --hemnet-old: #111111;
-      --hemnet-old-ring: rgba(255,255,255,0.18);
-      --hemnet-renovated: #22c55e;
-      --hemnet-renovated-ring: rgba(34,197,94,0.24);
-      --hemnet-new: #ef4444;
-      --hemnet-new-ring: rgba(239,68,68,0.24);
+      --listing-old: #111111;
+      --listing-old-ring: rgba(255,255,255,0.18);
+      --listing-renovated: #22c55e;
+      --listing-renovated-ring: rgba(34,197,94,0.24);
+      --listing-new: #ef4444;
+      --listing-new-ring: rgba(239,68,68,0.24);
     }
     * { box-sizing: border-box; }
     body { margin: 0; font: 14px/1.45 -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif; background: var(--bg); color: var(--text); }
-    .wrap { display: grid; grid-template-columns: 360px 1fr; height: 100vh; }
+    .wrap { display: grid; grid-template-columns: 380px 1fr; height: 100vh; }
     .side { padding: 16px; overflow: auto; background: var(--panel); border-right: 1px solid var(--line); }
     #map { height: 100vh; width: 100%; }
     .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin-bottom: 12px; }
@@ -157,8 +54,6 @@ HTML = """<!DOCTYPE html>
     .legend-item { display: flex; align-items: center; gap: 8px; }
     .swatch { width: 12px; height: 12px; border-radius: 999px; display: inline-block; }
     .swatch.stop { background: var(--stop); box-shadow: 0 0 0 3px rgba(255,107,107,0.18); }
-    .swatch.hemnet { background: var(--hemnet-renovated); box-shadow: 0 0 0 3px var(--hemnet-renovated-ring); }
-    .pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 8px; border-radius: 999px; border: 1px solid var(--line); background: #0f1730; color: var(--muted); margin: 6px 6px 0 0; }
     .small { font-size: 12px; }
     a { color: #9bc3ff; }
     @media (max-width: 960px) { .wrap { grid-template-columns: 1fr; grid-template-rows: auto 60vh; } #map { height: 60vh; } }
@@ -167,14 +62,14 @@ HTML = """<!DOCTYPE html>
 <body>
   <div class=\"wrap\">
     <div class=\"side\">
-      <h1>SL stop points + Hemnet</h1>
-      <p class=\"subtle\">Point map from the local SQLite DB. Stops are red dots. Hemnet listings are color-coded, red for new construction, black for older stock, green for renovated.</p>
+      <h1>SL stop points + property listings</h1>
+      <p class=\"subtle\">Stops come from the local SL SQLite DB. Listings come from the local listings DB, with real source links kept when known.</p>
 
       <div class=\"card stats\" id=\"stats\"></div>
 
       <div class=\"card\">
         <h2>Find</h2>
-        <div style=\"margin-bottom:8px;\"><input id=\"search\" placeholder=\"Search stop, area, listing, or location\" /></div>
+        <div style=\"margin-bottom:8px;\"><input id=\"search\" placeholder=\"Search stop, address, listing, or area\" /></div>
         <div class=\"row\">
           <select id=\"type\">
             <option value=\"ALL\">All stop types</option>
@@ -182,20 +77,27 @@ HTML = """<!DOCTYPE html>
             <option value=\"PLATFORM\">Platforms</option>
             <option value=\"PIER\">Piers</option>
           </select>
-          <select id=\"hemnetFilter\">
-            <option value=\"ALL\">Hemnet + SL</option>
+          <select id=\"listingFilter\">
+            <option value=\"ALL\">Listings + SL</option>
             <option value=\"STOPS_ONLY\">SL only</option>
-            <option value=\"HEMNET_ONLY\">Hemnet only</option>
+            <option value=\"LISTINGS_ONLY\">Listings only</option>
           </select>
         </div>
-        <div style=\"margin-top:8px;\"><button id=\"reset\">Reset view</button></div>
+        <div class=\"row\" style=\"margin-top:8px;\">
+          <select id=\"portalFilter\">
+            <option value=\"ALL\">All portals</option>
+            <option value=\"hemnet\">Hemnet</option>
+            <option value=\"booli\">Booli</option>
+          </select>
+          <button id=\"reset\">Reset view</button>
+        </div>
       </div>
 
       <div class=\"card legend\">
         <div class=\"legend-item\"><span class=\"swatch stop\"></span><span>SL stop points (red)</span></div>
-        <div class=\"legend-item\"><span class=\"swatch hemnet\" style=\"background:var(--hemnet-new); box-shadow:0 0 0 3px var(--hemnet-new-ring);\"></span><span>Hemnet new construction (red)</span></div>
-        <div class=\"legend-item\"><span class=\"swatch hemnet\" style=\"background:var(--hemnet-old); box-shadow:0 0 0 3px var(--hemnet-old-ring);\"></span><span>Hemnet older stock (black)</span></div>
-        <div class=\"legend-item\"><span class=\"swatch hemnet\" style=\"background:var(--hemnet-renovated); box-shadow:0 0 0 3px var(--hemnet-renovated-ring);\"></span><span>Hemnet renovated (green)</span></div>
+        <div class=\"legend-item\"><span class=\"swatch\" style=\"background:var(--listing-new); box-shadow:0 0 0 3px var(--listing-new-ring);\"></span><span>New construction (red)</span></div>
+        <div class=\"legend-item\"><span class=\"swatch\" style=\"background:var(--listing-old); box-shadow:0 0 0 3px var(--listing-old-ring);\"></span><span>Older stock (black)</span></div>
+        <div class=\"legend-item\"><span class=\"swatch\" style=\"background:var(--listing-renovated); box-shadow:0 0 0 3px var(--listing-renovated-ring);\"></span><span>Renovated (green)</span></div>
         <div class=\"small subtle\">Basemap toggle is in the top-right corner. Satellite uses Esri World Imagery.</div>
       </div>
 
@@ -213,14 +115,14 @@ HTML = """<!DOCTYPE html>
       DEFAULT: { radius: 2.6, color: '#ff6b6b', fillColor: '#ffb3b3', fillOpacity: 0.55, weight: 0.45 },
     };
 
-    const HEMNET_STYLE = {
+    const LISTING_STYLE = {
       new: { bg: '#ef4444', border: '#7f1d1d', ring: 'rgba(239,68,68,0.24)' },
       old: { bg: '#111111', border: '#d1d5db', ring: 'rgba(255,255,255,0.18)' },
       renovated: { bg: '#22c55e', border: '#14532d', ring: 'rgba(34,197,94,0.24)' },
     };
 
-    function hemnetIcon(kind) {
-      const style = HEMNET_STYLE[kind] || HEMNET_STYLE.old;
+    function listingIcon(kind) {
+      const style = LISTING_STYLE[kind] || LISTING_STYLE.old;
       return L.divIcon({
         className: '',
         html: `<div style="width:16px;height:16px;border-radius:999px;background:${style.bg};border:2px solid ${style.border};color:${style.border};font-size:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px ${style.ring}">⌂</div>`,
@@ -237,104 +139,103 @@ HTML = """<!DOCTYPE html>
     L.control.layers({ 'Street map': osm, 'Satellite': esri }, null, { position: 'topright' }).addTo(map);
 
     const stopLayer = L.layerGroup().addTo(map);
-    const hemnetLayer = L.layerGroup().addTo(map);
+    const listingLayer = L.layerGroup().addTo(map);
 
-    const stats = document.getElementById('stats');
-    const searchEl = document.getElementById('search');
-    const typeEl = document.getElementById('type');
-    const hemnetFilterEl = document.getElementById('hemnetFilter');
-    const matchNoteEl = document.getElementById('matchNote');
-
-    stats.innerHTML = `
-      <div class="stat"><span class="subtle">Stops</span><b id="countStops"></b></div>
-      <div class="stat"><span class="subtle">Visible stops</span><b id="countVisibleStops"></b></div>
-      <div class="stat"><span class="subtle">Hemnet matched</span><b id="countHemnet"></b></div>
-      <div class="stat"><span class="subtle">Visible Hemnet</span><b id="countVisibleHemnet"></b></div>
-    `;
-
-    const state = { stops: [], hemnet: [] };
+    const state = { stops: [], listings: [] };
 
     function popupHtmlStop(point) {
       return `<b>${point.name}</b><br>${point.stop_area_name ? `Area: ${point.stop_area_name}<br>` : ''}Type: ${point.type}<br>${point.designation ? `Designation: ${point.designation}<br>` : ''}ID: ${point.id}`;
     }
 
-    function popupHtmlHemnet(item) {
+    function linkLine(label, href) {
+      if (!href) return '';
+      return `<br><a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+    }
+
+    function popupHtmlListing(item) {
       const location = item.location ? `<br>Location: ${item.location}` : '';
       const price = item.price ? `<br>Price: ${item.price}` : '';
       const size = item.size ? `<br>Size: ${item.size}` : '';
       const rooms = item.rooms ? `<br>Rooms: ${item.rooms}` : '';
-      const category = item.category ? `<br>Status: ${item.category_label}` : '';
-      const source = item.source ? `<br>Source: ${item.source}` : '';
+      const portal = item.source ? `<br>Portal: ${item.source}` : '';
+      const propertyType = item.property_type ? `<br>Type: ${item.property_type}` : '';
+      const category = item.category_label ? `<br>Status: ${item.category_label}` : '';
       const matched = item.matched_name ? `<br>Matched via: ${item.matched_name} (${item.matched_kind}, ${item.match_score})` : '';
-      return `<b>${item.title || 'Hemnet listing'}</b>${location}${price}${size}${rooms}${category}${source}${matched}`;
+      return `<b>${item.title || 'Listing'}</b>${location}${price}${size}${rooms}${portal}${propertyType}${category}${matched}${linkLine('Open listing', item.listing_url)}${linkLine('Open source search', item.source_url)}`;
     }
 
     function render() {
-      const query = searchEl.value.trim().toLowerCase();
-      const type = typeEl.value;
-      const hemnetMode = hemnetFilterEl.value;
+      const q = document.getElementById('search').value.trim().toLowerCase();
+      const type = document.getElementById('type').value;
+      const listingMode = document.getElementById('listingFilter').value;
+      const portal = document.getElementById('portalFilter').value;
 
       const visibleStops = state.stops.filter((point) => {
+        if (listingMode === 'LISTINGS_ONLY') return false;
         if (type !== 'ALL' && point.type !== type) return false;
-        if (!query) return hemnetMode !== 'HEMNET_ONLY';
+        if (!q) return true;
         const haystack = `${point.name || ''} ${point.stop_area_name || ''} ${point.designation || ''} ${point.id || ''}`.toLowerCase();
-        return hemnetMode !== 'HEMNET_ONLY' && haystack.includes(query);
+        return haystack.includes(q);
       });
 
-      const visibleHemnet = state.hemnet.filter((item) => {
-        if (hemnetMode === 'STOPS_ONLY') return false;
-        if (!query) return true;
-        const haystack = `${item.title || ''} ${item.location || ''} ${item.matched_name || ''}`.toLowerCase();
-        return haystack.includes(query);
+      const visibleListings = state.listings.filter((item) => {
+        if (listingMode === 'STOPS_ONLY') return false;
+        if (portal !== 'ALL' && item.source !== portal) return false;
+        if (!q) return true;
+        const haystack = `${item.title || ''} ${item.location || ''} ${item.address || ''} ${item.matched_name || ''}`.toLowerCase();
+        return haystack.includes(q);
       });
 
       stopLayer.clearLayers();
-      hemnetLayer.clearLayers();
+      listingLayer.clearLayers();
 
       visibleStops.forEach((point) => {
         const style = STOP_STYLE[point.type] || STOP_STYLE.DEFAULT;
-        L.circleMarker([point.lat, point.lon], style)
-          .bindPopup(popupHtmlStop(point))
-          .addTo(stopLayer);
+        L.circleMarker([point.lat, point.lon], style).bindPopup(popupHtmlStop(point)).addTo(stopLayer);
       });
 
-      visibleHemnet.forEach((item) => {
-        L.marker([item.lat, item.lon], { icon: hemnetIcon(item.category) })
-          .bindPopup(popupHtmlHemnet(item))
-          .addTo(hemnetLayer);
+      visibleListings.forEach((item) => {
+        L.marker([item.lat, item.lon], { icon: listingIcon(item.category) }).bindPopup(popupHtmlListing(item)).addTo(listingLayer);
       });
 
       document.getElementById('countVisibleStops').textContent = visibleStops.length.toLocaleString();
-      document.getElementById('countVisibleHemnet').textContent = visibleHemnet.length.toLocaleString();
+      document.getElementById('countVisibleListings').textContent = visibleListings.length.toLocaleString();
     }
 
     function resetView() {
-      searchEl.value = '';
-      typeEl.value = 'ALL';
-      hemnetFilterEl.value = 'ALL';
+      document.getElementById('search').value = '';
+      document.getElementById('type').value = 'ALL';
+      document.getElementById('listingFilter').value = 'ALL';
+      document.getElementById('portalFilter').value = 'ALL';
       map.setView([59.3293, 18.0686], 10);
       render();
     }
 
     document.getElementById('reset').addEventListener('click', resetView);
-    searchEl.addEventListener('input', render);
-    typeEl.addEventListener('change', render);
-    hemnetFilterEl.addEventListener('change', render);
+    document.getElementById('search').addEventListener('input', render);
+    document.getElementById('type').addEventListener('change', render);
+    document.getElementById('listingFilter').addEventListener('change', render);
+    document.getElementById('portalFilter').addEventListener('change', render);
+
+    document.getElementById('stats').innerHTML = `
+      <div class="stat"><span class="subtle">Stops</span><b id="countStops"></b></div>
+      <div class="stat"><span class="subtle">Visible stops</span><b id="countVisibleStops"></b></div>
+      <div class="stat"><span class="subtle">Listings</span><b id="countListings"></b></div>
+      <div class="stat"><span class="subtle">Visible listings</span><b id="countVisibleListings"></b></div>
+    `;
 
     Promise.all([
       fetch('./data/sl-stop-points.json').then((r) => r.json()),
-      fetch('./data/hemnet-listings.json').then((r) => r.json()),
-    ]).then(([stops, hemnet]) => {
+      fetch('./data/listings.json').then((r) => r.json()),
+    ]).then(([stops, listingPayload]) => {
       state.stops = stops;
-      state.hemnet = hemnet.items;
-
+      state.listings = listingPayload.items || [];
       document.getElementById('countStops').textContent = stops.length.toLocaleString();
-      document.getElementById('countHemnet').textContent = hemnet.items.length.toLocaleString();
-      matchNoteEl.innerHTML = `Matched <b>${hemnet.items.length}</b> of <b>${hemnet.source_count}</b> Hemnet listings from local data using local SL place names only. Unmatched listings: <b>${hemnet.unmatched_count}</b>.`;
-
+      document.getElementById('countListings').textContent = (listingPayload.mapped_count || state.listings.length).toLocaleString();
+      document.getElementById('matchNote').innerHTML = `Local listings DB rows: <b>${listingPayload.source_count}</b>. Mapped rows on the map: <b>${listingPayload.mapped_count}</b>.`; 
       render();
     }).catch((error) => {
-      matchNoteEl.textContent = `Failed to load local JSON data: ${error.message}`;
+      document.getElementById('matchNote').textContent = `Failed to load local JSON data: ${error.message}`;
     });
   </script>
 </body>
@@ -342,14 +243,12 @@ HTML = """<!DOCTYPE html>
 """
 
 
-def main() -> None:
+def export_stop_points() -> list[dict]:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(TRANSPORT_DB_PATH)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
-
-    stop_rows = cur.execute(
+    rows = cur.execute(
         """
         SELECT id, name, designation, type, lat, lon, stop_area_name
         FROM stop_points
@@ -357,8 +256,8 @@ def main() -> None:
         ORDER BY id
         """
     ).fetchall()
-
-    stops = [
+    conn.close()
+    points = [
         {
             "id": row["id"],
             "name": row["name"],
@@ -368,71 +267,21 @@ def main() -> None:
             "lon": row["lon"],
             "stop_area_name": row["stop_area_name"],
         }
-        for row in stop_rows
+        for row in rows
     ]
+    STOPS_OUT.write_text(json.dumps(points, ensure_ascii=False, separators=(",", ":")))
+    return points
 
-    places: list[Place] = []
-    for row in cur.execute("SELECT name, lat, lon, type FROM stop_areas WHERE lat IS NOT NULL AND lon IS NOT NULL"):
-        places.append(Place(name=row[0], lat=row[1], lon=row[2], kind=f"stop_area:{row[3]}", norm=normalize(row[0])))
-    for row in cur.execute("SELECT name, lat, lon FROM sites WHERE lat IS NOT NULL AND lon IS NOT NULL"):
-        places.append(Place(name=row[0], lat=row[1], lon=row[2], kind="site", norm=normalize(row[0])))
 
-    listings = json.loads(HEMNET_PATH.read_text())
-    if HEMNET_SUPPLEMENTAL_PATH.exists():
-        seen = {
-            (item.get("title", "").strip(), item.get("location", "").strip(), item.get("price", "").strip())
-            for item in listings
-        }
-        for item in json.loads(HEMNET_SUPPLEMENTAL_PATH.read_text()):
-            key = (item.get("title", "").strip(), item.get("location", "").strip(), item.get("price", "").strip())
-            if key not in seen:
-                listings.append(item)
-                seen.add(key)
-    hemnet_items = []
-    unmatched = 0
-    for listing in listings:
-        match = match_location(listing.get("location", ""), places)
-        if not match:
-            unmatched += 1
-            continue
-        category = classify_listing(listing)
-        hemnet_items.append(
-            {
-                "title": listing.get("title"),
-                "location": listing.get("location"),
-                "price": listing.get("price"),
-                "size": listing.get("size"),
-                "rooms": listing.get("rooms"),
-                "category": category,
-                "category_label": {
-                    "new": "New construction",
-                    "old": "Older stock",
-                    "renovated": "Renovated",
-                }[category],
-                "source": listing.get("source", "local_scrape"),
-                **match,
-            }
-        )
-
-    STOPS_OUT.write_text(json.dumps(stops, ensure_ascii=False, separators=(",", ":")))
-    HEMNET_OUT.write_text(
-        json.dumps(
-            {
-                "source": str(HEMNET_PATH.relative_to(ROOT)),
-                "source_count": len(listings),
-                "unmatched_count": unmatched,
-                "items": hemnet_items,
-            },
-            ensure_ascii=False,
-            separators=(",", ":"),
-        )
-    )
+def main() -> None:
+    points = export_stop_points()
+    listings = build_listing_artifacts()
     (SITE_DIR / "all-points.html").write_text(HTML)
-
     print(f"Wrote {STOPS_OUT}")
-    print(f"Wrote {HEMNET_OUT}")
+    print(f"Wrote {LISTINGS_JSON_OUT}")
     print(f"Wrote {SITE_DIR / 'all-points.html'}")
-    print(f"Hemnet matches: {len(hemnet_items)}/{len(listings)}")
+    print(f"Stop points: {len(points)}")
+    print(f"Listings DB rows: {len(listings)}")
 
 
 if __name__ == "__main__":
