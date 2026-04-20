@@ -1,10 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import re
+import sqlite3
+import unicodedata
+from dataclasses import dataclass
+from difflib import SequenceMatcher
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+SITE_DIR = ROOT / "sl-map-site"
+DB_PATH = ROOT / "sl-db" / "sl_transport.sqlite"
+HEMNET_PATH = ROOT / "hemnet-scrape" / "listings_final.json"
+DATA_DIR = SITE_DIR / "data"
+
+STOPS_OUT = DATA_DIR / "sl-stop-points.json"
+HEMNET_OUT = DATA_DIR / "hemnet-listings.json"
+
+
+def normalize(text: str) -> str:
+    text = (text or "").lower().strip()
+    text = text.replace("stockholms kommun", "")
+    text = text.replace("kommun", "")
+    text = re.sub(r"\([^)]*\)", " ", text)
+    text = text.replace("/", " ")
+    text = re.sub(r"\s*-\s*", " ", text)
+    for word in ["centrala", "norra", "sodra", "vastra", "ostra"]:
+        text = re.sub(rf"\b{word}\b", " ", text)
+    text = " ".join(text.split())
+    text = unicodedata.normalize("NFKD", text)
+    text = "".join(ch for ch in text if not unicodedata.combining(ch))
+    return text
+
+
+@dataclass(frozen=True)
+class Place:
+    name: str
+    lat: float
+    lon: float
+    kind: str
+    norm: str
+
+
+def location_candidates(location: str) -> list[str]:
+    base = (location or "").split(",")[0].strip()
+    parts = [base]
+    if " - " in base:
+        parts.extend(p.strip() for p in base.split(" - ") if p.strip())
+    if "/" in base:
+        parts.extend(p.strip() for p in base.split("/") if p.strip())
+
+    out: list[str] = []
+    seen: set[str] = set()
+    for part in parts:
+        candidate = normalize(part)
+        if candidate and candidate not in seen:
+            seen.add(candidate)
+            out.append(candidate)
+    return out
+
+
+def match_location(location: str, places: list[Place]) -> dict | None:
+    if not location:
+        return None
+
+    common_noise = {"centrum", "kommun", "strandpark"}
+    best: tuple[float, Place, str] | None = None
+
+    for candidate in location_candidates(location):
+        candidate_tokens = set(candidate.split()) - common_noise
+        for place in places:
+            score = 0.0
+            if candidate == place.norm:
+                score = 1.0
+            else:
+                place_tokens = set(place.norm.split()) - common_noise
+                if candidate_tokens and candidate_tokens <= place_tokens:
+                    score = max(score, 0.93)
+                if place_tokens and place_tokens <= candidate_tokens:
+                    score = max(score, 0.90)
+                score = max(score, SequenceMatcher(None, candidate, place.norm).ratio() * 0.88)
+            if best is None or score > best[0]:
+                best = (score, place, candidate)
+
+    if best is None or best[0] < 0.88:
+        return None
+
+    score, place, candidate = best
+    return {
+        "lat": place.lat,
+        "lon": place.lon,
+        "matched_name": place.name,
+        "matched_kind": place.kind,
+        "match_score": round(score, 3),
+        "match_query": candidate,
+    }
+
+
+HTML = """<!DOCTYPE html>
+<html lang=\"en\">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset=\"UTF-8\" />
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
   <title>SL all stop points</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.css\" />
   <style>
     :root {
       --bg: #0b1020;
@@ -19,7 +119,7 @@
       --hemnet-fill: #c7f9cc;
     }
     * { box-sizing: border-box; }
-    body { margin: 0; font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
+    body { margin: 0; font: 14px/1.45 -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif; background: var(--bg); color: var(--text); }
     .wrap { display: grid; grid-template-columns: 360px 1fr; height: 100vh; }
     .side { padding: 16px; overflow: auto; background: var(--panel); border-right: 1px solid var(--line); }
     #map { height: 100vh; width: 100%; }
@@ -44,44 +144,44 @@
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="side">
+  <div class=\"wrap\">
+    <div class=\"side\">
       <h1>SL stop points + Hemnet</h1>
-      <p class="subtle">Point map from the local SQLite DB. Stops are red dots, Hemnet listings are green home markers matched to local place names.</p>
+      <p class=\"subtle\">Point map from the local SQLite DB. Stops are red dots, Hemnet listings are green home markers matched to local place names.</p>
 
-      <div class="card stats" id="stats"></div>
+      <div class=\"card stats\" id=\"stats\"></div>
 
-      <div class="card">
+      <div class=\"card\">
         <h2>Find</h2>
-        <div style="margin-bottom:8px;"><input id="search" placeholder="Search stop, area, listing, or location" /></div>
-        <div class="row">
-          <select id="type">
-            <option value="ALL">All stop types</option>
-            <option value="BUSSTOP">Bus stops</option>
-            <option value="PLATFORM">Platforms</option>
-            <option value="PIER">Piers</option>
+        <div style=\"margin-bottom:8px;\"><input id=\"search\" placeholder=\"Search stop, area, listing, or location\" /></div>
+        <div class=\"row\">
+          <select id=\"type\">
+            <option value=\"ALL\">All stop types</option>
+            <option value=\"BUSSTOP\">Bus stops</option>
+            <option value=\"PLATFORM\">Platforms</option>
+            <option value=\"PIER\">Piers</option>
           </select>
-          <select id="hemnetFilter">
-            <option value="ALL">Hemnet + SL</option>
-            <option value="STOPS_ONLY">SL only</option>
-            <option value="HEMNET_ONLY">Hemnet only</option>
+          <select id=\"hemnetFilter\">
+            <option value=\"ALL\">Hemnet + SL</option>
+            <option value=\"STOPS_ONLY\">SL only</option>
+            <option value=\"HEMNET_ONLY\">Hemnet only</option>
           </select>
         </div>
-        <div style="margin-top:8px;"><button id="reset">Reset view</button></div>
+        <div style=\"margin-top:8px;\"><button id=\"reset\">Reset view</button></div>
       </div>
 
-      <div class="card legend">
-        <div class="legend-item"><span class="swatch stop"></span><span>SL stop points (red)</span></div>
-        <div class="legend-item"><span class="swatch hemnet"></span><span>Hemnet listings (green)</span></div>
-        <div class="small subtle">Basemap toggle is in the top-right corner. Satellite uses Esri World Imagery.</div>
+      <div class=\"card legend\">
+        <div class=\"legend-item\"><span class=\"swatch stop\"></span><span>SL stop points (red)</span></div>
+        <div class=\"legend-item\"><span class=\"swatch hemnet\"></span><span>Hemnet listings (green)</span></div>
+        <div class=\"small subtle\">Basemap toggle is in the top-right corner. Satellite uses Esri World Imagery.</div>
       </div>
 
-      <div class="card subtle small" id="matchNote"></div>
+      <div class=\"card subtle small\" id=\"matchNote\"></div>
     </div>
-    <div id="map"></div>
+    <div id=\"map\"></div>
   </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.js\"></script>
   <script>
     const STOP_STYLE = {
       BUSSTOP: { radius: 2.4, color: '#ff6b6b', fillColor: '#ff9b9b', fillOpacity: 0.55, weight: 0.45 },
@@ -205,3 +305,83 @@
   </script>
 </body>
 </html>
+"""
+
+
+def main() -> None:
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+
+    stop_rows = cur.execute(
+        """
+        SELECT id, name, designation, type, lat, lon, stop_area_name
+        FROM stop_points
+        WHERE lat IS NOT NULL AND lon IS NOT NULL
+        ORDER BY id
+        """
+    ).fetchall()
+
+    stops = [
+        {
+            "id": row["id"],
+            "name": row["name"],
+            "designation": row["designation"],
+            "type": row["type"],
+            "lat": row["lat"],
+            "lon": row["lon"],
+            "stop_area_name": row["stop_area_name"],
+        }
+        for row in stop_rows
+    ]
+
+    places: list[Place] = []
+    for row in cur.execute("SELECT name, lat, lon, type FROM stop_areas WHERE lat IS NOT NULL AND lon IS NOT NULL"):
+        places.append(Place(name=row[0], lat=row[1], lon=row[2], kind=f"stop_area:{row[3]}", norm=normalize(row[0])))
+    for row in cur.execute("SELECT name, lat, lon FROM sites WHERE lat IS NOT NULL AND lon IS NOT NULL"):
+        places.append(Place(name=row[0], lat=row[1], lon=row[2], kind="site", norm=normalize(row[0])))
+
+    listings = json.loads(HEMNET_PATH.read_text())
+    hemnet_items = []
+    unmatched = 0
+    for listing in listings:
+        match = match_location(listing.get("location", ""), places)
+        if not match:
+            unmatched += 1
+            continue
+        hemnet_items.append(
+            {
+                "title": listing.get("title"),
+                "location": listing.get("location"),
+                "price": listing.get("price"),
+                "size": listing.get("size"),
+                "rooms": listing.get("rooms"),
+                **match,
+            }
+        )
+
+    STOPS_OUT.write_text(json.dumps(stops, ensure_ascii=False, separators=(",", ":")))
+    HEMNET_OUT.write_text(
+        json.dumps(
+            {
+                "source": str(HEMNET_PATH.relative_to(ROOT)),
+                "source_count": len(listings),
+                "unmatched_count": unmatched,
+                "items": hemnet_items,
+            },
+            ensure_ascii=False,
+            separators=(",", ":"),
+        )
+    )
+    (SITE_DIR / "all-points.html").write_text(HTML)
+
+    print(f"Wrote {STOPS_OUT}")
+    print(f"Wrote {HEMNET_OUT}")
+    print(f"Wrote {SITE_DIR / 'all-points.html'}")
+    print(f"Hemnet matches: {len(hemnet_items)}/{len(listings)}")
+
+
+if __name__ == "__main__":
+    main()
