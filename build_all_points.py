@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE_DIR = ROOT / "sl-map-site"
 DB_PATH = ROOT / "sl-db" / "sl_transport.sqlite"
 HEMNET_PATH = ROOT / "hemnet-scrape" / "listings_final.json"
+HEMNET_SUPPLEMENTAL_PATH = SITE_DIR / "sources" / "listings_supplemental.json"
 DATA_DIR = SITE_DIR / "data"
 
 STOPS_OUT = DATA_DIR / "sl-stop-points.json"
@@ -90,6 +91,8 @@ def match_location(location: str, places: list[Place]) -> dict | None:
                 score = 1.0
             else:
                 place_tokens = set(place.norm.split()) - common_noise
+                if place.norm.startswith(candidate) or candidate.startswith(place.norm):
+                    score = max(score, 0.94)
                 if candidate_tokens and candidate_tokens <= place_tokens:
                     score = max(score, 0.93)
                 if place_tokens and place_tokens <= candidate_tokens:
@@ -261,8 +264,9 @@ HTML = """<!DOCTYPE html>
       const size = item.size ? `<br>Size: ${item.size}` : '';
       const rooms = item.rooms ? `<br>Rooms: ${item.rooms}` : '';
       const category = item.category ? `<br>Status: ${item.category_label}` : '';
+      const source = item.source ? `<br>Source: ${item.source}` : '';
       const matched = item.matched_name ? `<br>Matched via: ${item.matched_name} (${item.matched_kind}, ${item.match_score})` : '';
-      return `<b>${item.title || 'Hemnet listing'}</b>${location}${price}${size}${rooms}${category}${matched}`;
+      return `<b>${item.title || 'Hemnet listing'}</b>${location}${price}${size}${rooms}${category}${source}${matched}`;
     }
 
     function render() {
@@ -374,6 +378,16 @@ def main() -> None:
         places.append(Place(name=row[0], lat=row[1], lon=row[2], kind="site", norm=normalize(row[0])))
 
     listings = json.loads(HEMNET_PATH.read_text())
+    if HEMNET_SUPPLEMENTAL_PATH.exists():
+        seen = {
+            (item.get("title", "").strip(), item.get("location", "").strip(), item.get("price", "").strip())
+            for item in listings
+        }
+        for item in json.loads(HEMNET_SUPPLEMENTAL_PATH.read_text()):
+            key = (item.get("title", "").strip(), item.get("location", "").strip(), item.get("price", "").strip())
+            if key not in seen:
+                listings.append(item)
+                seen.add(key)
     hemnet_items = []
     unmatched = 0
     for listing in listings:
@@ -395,6 +409,7 @@ def main() -> None:
                     "old": "Older stock",
                     "renovated": "Renovated",
                 }[category],
+                "source": listing.get("source", "local_scrape"),
                 **match,
             }
         )

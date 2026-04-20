@@ -147,8 +147,9 @@
       const size = item.size ? `<br>Size: ${item.size}` : '';
       const rooms = item.rooms ? `<br>Rooms: ${item.rooms}` : '';
       const category = item.category ? `<br>Status: ${item.category_label}` : '';
+      const source = item.source ? `<br>Source: ${item.source}` : '';
       const matched = item.matched_name ? `<br>Matched via: ${item.matched_name} (${item.matched_kind}, ${item.match_score})` : '';
-      return `<b>${item.title || 'Hemnet listing'}</b>${location}${price}${size}${rooms}${category}${matched}`;
+      return `<b>${item.title || 'Hemnet listing'}</b>${location}${price}${size}${rooms}${category}${source}${matched}`;
     }
 
     function render() {

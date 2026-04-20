@@ -1,0 +1,40 @@
+[
+  {
+    "title": "Gamlebovägen 5B |",
+    "location": "Hallstavik, Norrtälje kommun",
+    "price": "675 000 kr",
+    "size": "49,7 m²",
+    "rooms": "2 rum",
+    "source": "web_search_snippet"
+  },
+  {
+    "title": "Hallstavik listing |",
+    "location": "Hallstavik, Norrtälje kommun",
+    "price": "695 000 kr",
+    "size": "64 m²",
+    "rooms": "3 rum",
+    "source": "web_search_snippet"
+  },
+  {
+    "title": "Hallstavik villa |",
+    "location": "Hallstavik, Norrtälje kommun",
+    "price": "2 195 000 kr",
+    "size": "120 + 60 m²",
+    "rooms": "6 rum",
+    "source": "web_search_snippet"
+  },
+  {
+    "title": "Hallstavik home |",
+    "location": "Hallstavik, Norrtälje kommun",
+    "price": "2 495 000 kr",
+    "source": "web_search_snippet"
+  },
+  {
+    "title": "Bro/Österhagen villa |",
+    "location": "Bro/Österhagen, Upplands-Bro kommun",
+    "price": "6 995 000 kr",
+    "size": "171 m²",
+    "rooms": "6 rum",
+    "source": "web_search_snippet"
+  }
+]
