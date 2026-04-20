@@ -19,6 +19,10 @@ STOPS_OUT = DATA_DIR / "sl-stop-points.json"
 HEMNET_OUT = DATA_DIR / "hemnet-listings.json"
 
 
+RENOVATED_RE = re.compile(r"\b(renoverad|renoverat|renoverade|renovering|nyrenoverad|nyrenoverat|totalrenoverad|totalrenoverat|topprenoverad|smakfullt renoverad|stambytt|helrenoverad|helrenoverat)\b", re.IGNORECASE)
+NEW_RE = re.compile(r"\b(nybyggnadsprojekt|nyproduktion|nybyggd|nybyggt|svanenmärkt|nytt grannskap)\b", re.IGNORECASE)
+
+
 def normalize(text: str) -> str:
     text = (text or "").lower().strip()
     text = text.replace("stockholms kommun", "")
@@ -59,6 +63,16 @@ def location_candidates(location: str) -> list[str]:
             seen.add(candidate)
             out.append(candidate)
     return out
+
+
+def classify_listing(listing: dict) -> str:
+    tags = " ".join(listing.get("tags") or [])
+    text = " ".join(part for part in [listing.get("title", ""), listing.get("blurb", ""), tags] if part)
+    if NEW_RE.search(text):
+        return "new"
+    if RENOVATED_RE.search(text):
+        return "renovated"
+    return "old"
 
 
 def match_location(location: str, places: list[Place]) -> dict | None:
@@ -115,8 +129,12 @@ HTML = """<!DOCTYPE html>
       --text: #e8edf7;
       --stop: #ff6b6b;
       --stop-fill: #ff9b9b;
-      --hemnet: #7ae582;
-      --hemnet-fill: #c7f9cc;
+      --hemnet-old: #111111;
+      --hemnet-old-ring: rgba(255,255,255,0.18);
+      --hemnet-renovated: #22c55e;
+      --hemnet-renovated-ring: rgba(34,197,94,0.24);
+      --hemnet-new: #ef4444;
+      --hemnet-new-ring: rgba(239,68,68,0.24);
     }
     * { box-sizing: border-box; }
     body { margin: 0; font: 14px/1.45 -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif; background: var(--bg); color: var(--text); }
@@ -136,7 +154,7 @@ HTML = """<!DOCTYPE html>
     .legend-item { display: flex; align-items: center; gap: 8px; }
     .swatch { width: 12px; height: 12px; border-radius: 999px; display: inline-block; }
     .swatch.stop { background: var(--stop); box-shadow: 0 0 0 3px rgba(255,107,107,0.18); }
-    .swatch.hemnet { background: var(--hemnet); box-shadow: 0 0 0 3px rgba(122,229,130,0.18); }
+    .swatch.hemnet { background: var(--hemnet-renovated); box-shadow: 0 0 0 3px var(--hemnet-renovated-ring); }
     .pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 8px; border-radius: 999px; border: 1px solid var(--line); background: #0f1730; color: var(--muted); margin: 6px 6px 0 0; }
     .small { font-size: 12px; }
     a { color: #9bc3ff; }
@@ -147,7 +165,7 @@ HTML = """<!DOCTYPE html>
   <div class=\"wrap\">
     <div class=\"side\">
       <h1>SL stop points + Hemnet</h1>
-      <p class=\"subtle\">Point map from the local SQLite DB. Stops are red dots, Hemnet listings are green home markers matched to local place names.</p>
+      <p class=\"subtle\">Point map from the local SQLite DB. Stops are red dots. Hemnet listings are color-coded, red for new construction, black for older stock, green for renovated.</p>
 
       <div class=\"card stats\" id=\"stats\"></div>
 
@@ -172,7 +190,9 @@ HTML = """<!DOCTYPE html>
 
       <div class=\"card legend\">
         <div class=\"legend-item\"><span class=\"swatch stop\"></span><span>SL stop points (red)</span></div>
-        <div class=\"legend-item\"><span class=\"swatch hemnet\"></span><span>Hemnet listings (green)</span></div>
+        <div class=\"legend-item\"><span class=\"swatch hemnet\" style=\"background:var(--hemnet-new); box-shadow:0 0 0 3px var(--hemnet-new-ring);\"></span><span>Hemnet new construction (red)</span></div>
+        <div class=\"legend-item\"><span class=\"swatch hemnet\" style=\"background:var(--hemnet-old); box-shadow:0 0 0 3px var(--hemnet-old-ring);\"></span><span>Hemnet older stock (black)</span></div>
+        <div class=\"legend-item\"><span class=\"swatch hemnet\" style=\"background:var(--hemnet-renovated); box-shadow:0 0 0 3px var(--hemnet-renovated-ring);\"></span><span>Hemnet renovated (green)</span></div>
         <div class=\"small subtle\">Basemap toggle is in the top-right corner. Satellite uses Esri World Imagery.</div>
       </div>
 
@@ -190,13 +210,22 @@ HTML = """<!DOCTYPE html>
       DEFAULT: { radius: 2.6, color: '#ff6b6b', fillColor: '#ffb3b3', fillOpacity: 0.55, weight: 0.45 },
     };
 
-    const hemnetIcon = L.divIcon({
-      className: '',
-      html: '<div style="width:16px;height:16px;border-radius:999px;background:#7ae582;border:2px solid #14532d;color:#14532d;font-size:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px rgba(122,229,130,0.20)">⌂</div>',
-      iconSize: [16, 16],
-      iconAnchor: [8, 8],
-      popupAnchor: [0, -8],
-    });
+    const HEMNET_STYLE = {
+      new: { bg: '#ef4444', border: '#7f1d1d', ring: 'rgba(239,68,68,0.24)' },
+      old: { bg: '#111111', border: '#d1d5db', ring: 'rgba(255,255,255,0.18)' },
+      renovated: { bg: '#22c55e', border: '#14532d', ring: 'rgba(34,197,94,0.24)' },
+    };
+
+    function hemnetIcon(kind) {
+      const style = HEMNET_STYLE[kind] || HEMNET_STYLE.old;
+      return L.divIcon({
+        className: '',
+        html: `<div style="width:16px;height:16px;border-radius:999px;background:${style.bg};border:2px solid ${style.border};color:${style.border};font-size:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px ${style.ring}">⌂</div>`,
+        iconSize: [16, 16],
+        iconAnchor: [8, 8],
+        popupAnchor: [0, -8],
+      });
+    }
 
     const map = L.map('map', { preferCanvas: true, zoomControl: true }).setView([59.3293, 18.0686], 10);
     const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors' });
@@ -231,8 +260,9 @@ HTML = """<!DOCTYPE html>
       const price = item.price ? `<br>Price: ${item.price}` : '';
       const size = item.size ? `<br>Size: ${item.size}` : '';
       const rooms = item.rooms ? `<br>Rooms: ${item.rooms}` : '';
+      const category = item.category ? `<br>Status: ${item.category_label}` : '';
       const matched = item.matched_name ? `<br>Matched via: ${item.matched_name} (${item.matched_kind}, ${item.match_score})` : '';
-      return `<b>${item.title || 'Hemnet listing'}</b>${location}${price}${size}${rooms}${matched}`;
+      return `<b>${item.title || 'Hemnet listing'}</b>${location}${price}${size}${rooms}${category}${matched}`;
     }
 
     function render() {
@@ -265,7 +295,7 @@ HTML = """<!DOCTYPE html>
       });
 
       visibleHemnet.forEach((item) => {
-        L.marker([item.lat, item.lon], { icon: hemnetIcon })
+        L.marker([item.lat, item.lon], { icon: hemnetIcon(item.category) })
           .bindPopup(popupHtmlHemnet(item))
           .addTo(hemnetLayer);
       });
@@ -351,6 +381,7 @@ def main() -> None:
         if not match:
             unmatched += 1
             continue
+        category = classify_listing(listing)
         hemnet_items.append(
             {
                 "title": listing.get("title"),
@@ -358,6 +389,12 @@ def main() -> None:
                 "price": listing.get("price"),
                 "size": listing.get("size"),
                 "rooms": listing.get("rooms"),
+                "category": category,
+                "category_label": {
+                    "new": "New construction",
+                    "old": "Older stock",
+                    "renovated": "Renovated",
+                }[category],
                 **match,
             }
         )
