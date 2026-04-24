@@ -198,7 +198,15 @@
     }
 
     document.getElementById('reset').addEventListener('click', resetView);
-    document.getElementById('search').addEventListener('input', render);
+    // Added debounce for better performance
+    function debounce(func, wait) {
+      let timeout;
+      return function() {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, arguments), wait);
+      };
+    }
+    document.getElementById('search').addEventListener('input', debounce(render, 250));
     document.getElementById('type').addEventListener('change', render);
     document.getElementById('listingFilter').addEventListener('change', render);
     document.getElementById('portalFilter').addEventListener('change', render);
