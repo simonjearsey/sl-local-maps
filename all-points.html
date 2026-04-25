@@ -41,6 +41,8 @@
     .swatch { width: 12px; height: 12px; border-radius: 999px; display: inline-block; }
     .swatch.stop { background: var(--stop); box-shadow: 0 0 0 3px rgba(255,107,107,0.18); }
     .small { font-size: 12px; }
+    .project-meta { margin: 10px 0 14px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: #0f1730; }
+    .project-meta b { color: var(--text); }
     a { color: #9bc3ff; }
     @media (max-width: 960px) { .wrap { grid-template-columns: 1fr; grid-template-rows: auto 60vh; } #map { height: 60vh; } }
   </style>
@@ -50,6 +52,7 @@
     <div class="side">
       <h1>SL stop points + property listings</h1>
       <p class="subtle">Stops come from the local SL SQLite DB. Listings come from the local listings DB, with real source links kept when known.</p>
+      <div class="project-meta small subtle" id="projectMeta">Version loading…</div>
 
       <div class="card stats" id="stats"></div>
 
@@ -128,6 +131,22 @@
     const listingLayer = L.layerGroup().addTo(map);
 
     const state = { stops: [], listings: [] };
+
+    function formatPublishedAt(value) {
+      if (!value) return 'unknown';
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return value;
+      return date.toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+    }
+
+    fetch('./data/version.json', { cache: 'no-store' })
+      .then((r) => r.json())
+      .then((meta) => {
+        document.getElementById('projectMeta').innerHTML = `<b>${meta.version || 'unversioned'}</b> · published ${formatPublishedAt(meta.published_at)} · branch ${meta.source_branch || 'main'}`;
+      })
+      .catch(() => {
+        document.getElementById('projectMeta').textContent = 'Version metadata unavailable';
+      });
 
     function popupHtmlStop(point) {
       return `<b>${point.name}</b><br>${point.stop_area_name ? `Area: ${point.stop_area_name}<br>` : ''}Type: ${point.type}<br>${point.designation ? `Designation: ${point.designation}<br>` : ''}ID: ${point.id}`;

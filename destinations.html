@@ -19,6 +19,8 @@
     input, select, button { width: 100%; box-sizing: border-box; border-radius: 10px; border: 1px solid #314266; background: #0d1430; color: #e8edf7; padding: 10px 12px; }
     .row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .subtle { color: #a9b5d1; }
+    .project-meta { margin: 10px 0 14px; padding: 8px 10px; border: 1px solid #283556; border-radius: 10px; background: #0f1730; font-size: 12px; }
+    .project-meta b { color: #e8edf7; }
     h1, h2 { margin: 0 0 10px; }
     code { background:#0d1430; padding:2px 5px; border-radius:6px; }
     @media (max-width: 900px) { .wrap { grid-template-columns: 1fr; grid-template-rows: auto 60vh; } #map { height: 60vh; } }
@@ -29,6 +31,7 @@
     <div class="side">
       <h1>SL destinations map</h1>
       <p class="subtle">Destination-like nodes from the local SQLite database, now with a street/satellite basemap.</p>
+      <div class="project-meta subtle" id="projectMeta">Version loading…</div>
       <div class="card stats" id="stats"></div>
       <div class="card">
         <h2>Filter</h2>
@@ -54,6 +57,20 @@
     const cluster = L.markerClusterGroup({ disableClusteringAtZoom: 15, spiderfyOnMaxZoom: true, showCoverageOnHover: false, maxClusterRadius: 50 });
     map.addLayer(cluster);
     const stats = document.getElementById('stats');
+    function formatPublishedAt(value) {
+      if (!value) return 'unknown';
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return value;
+      return date.toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+    }
+    fetch('./data/version.json', { cache: 'no-store' })
+      .then((r) => r.json())
+      .then((meta) => {
+        document.getElementById('projectMeta').innerHTML = `<b>${meta.version || 'unversioned'}</b> · published ${formatPublishedAt(meta.published_at)} · branch ${meta.source_branch || 'main'}`;
+      })
+      .catch(() => {
+        document.getElementById('projectMeta').textContent = 'Version metadata unavailable';
+      });
     const controls = document.getElementById('controls');
     
 stats.innerHTML = `<div class="stat"><span class="subtle">Destinations</span><b id="countAll"></b></div><div class="stat"><span class="subtle">Visible</span><b id="countVisible"></b></div><div class="stat"><span class="subtle">Linked</span><b id="countLinked"></b></div><div class="stat"><span class="subtle">Unlinked</span><b id="countUnlinked"></b></div>`;
