@@ -92,6 +92,30 @@ def category_label(category: str) -> str:
     }.get(category, category.title())
 
 
+def parse_market_age_days(record: dict[str, Any]) -> int | None:
+    """Parse explicit source-provided listing age; do not infer from local scrape date."""
+    text = " ".join(
+        str(part)
+        for part in [record.get("days_on_market"), record.get("days_on_booli"), record.get("age_text")]
+        if part
+    ).lower()
+    if not text:
+        return None
+    if re.search(r"\b(idag|today)\b", text):
+        return 0
+    m = re.search(r"(\d+)\s*(?:dag|day)", text)
+    if m:
+        return int(m.group(1))
+    m = re.search(r"(\d+)\s*(?:vecka|veckor|week|weeks)", text)
+    if m:
+        return int(m.group(1)) * 7
+    return None
+
+
+def market_age_text(record: dict[str, Any]) -> str | None:
+    return record.get("days_on_market") or record.get("days_on_booli") or record.get("age_text")
+
+
 def load_places() -> list[Place]:
     conn = sqlite3.connect(TRANSPORT_DB_PATH)
     cur = conn.cursor()
@@ -245,6 +269,8 @@ def canonical_rows() -> list[dict[str, Any]]:
             "category": category,
             "category_label": category_label(category),
             "status_text": record.get("status_text") or record.get("days_on_booli"),
+            "market_age_text": market_age_text(record),
+            "market_age_days": parse_market_age_days(record),
             "raw_json": json.dumps(record, ensure_ascii=False, sort_keys=True),
             "first_seen_at": record.get("first_seen_at") or now,
             "last_seen_at": now,
@@ -261,7 +287,8 @@ def init_db(conn: sqlite3.Connection) -> None:
     conn.executescript(
         """
         PRAGMA journal_mode=WAL;
-        CREATE TABLE IF NOT EXISTS listings (
+        DROP TABLE IF EXISTS listings;
+        CREATE TABLE listings (
             id INTEGER PRIMARY KEY,
             dedupe_key TEXT UNIQUE NOT NULL,
             source TEXT NOT NULL,
@@ -285,11 +312,12 @@ def init_db(conn: sqlite3.Connection) -> None:
             category TEXT,
             category_label TEXT,
             status_text TEXT,
+            market_age_text TEXT,
+            market_age_days INTEGER,
             raw_json TEXT NOT NULL,
             first_seen_at TEXT,
             last_seen_at TEXT
         );
-        DELETE FROM listings;
         """
     )
 
@@ -304,8 +332,8 @@ def build_sqlite(rows: list[dict[str, Any]]) -> None:
             dedupe_key, source, source_id, source_url, listing_url, title, location, address,
             lat, lon, matched_name, matched_kind, match_score, match_query,
             price, rooms, size, property_type, tags_json, category, category_label,
-            status_text, raw_json, first_seen_at, last_seen_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            status_text, market_age_text, market_age_days, raw_json, first_seen_at, last_seen_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         [
             (
@@ -331,6 +359,8 @@ def build_sqlite(rows: list[dict[str, Any]]) -> None:
                 row.get("category"),
                 row.get("category_label"),
                 row.get("status_text"),
+                row.get("market_age_text"),
+                row.get("market_age_days"),
                 row.get("raw_json"),
                 row.get("first_seen_at"),
                 row.get("last_seen_at"),

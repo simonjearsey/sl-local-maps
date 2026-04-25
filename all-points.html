@@ -137,11 +137,9 @@
     };
 
     function isRecentListing(item) {
-      if (!item.first_seen_at) return false;
-      const firstSeen = new Date(item.first_seen_at);
-      if (Number.isNaN(firstSeen.getTime())) return false;
-      const ageMs = Date.now() - firstSeen.getTime();
-      return ageMs >= 0 && ageMs <= 7 * 24 * 60 * 60 * 1000;
+      // Yellow means explicit source-provided market age <= 7 days.
+      // Do not use first_seen_at here: that is only when our local dataset first captured it.
+      return Number.isFinite(item.market_age_days) && item.market_age_days <= 7;
     }
 
     function listingIcon(kind, item = {}) {
@@ -199,7 +197,7 @@
       const portal = item.source ? `<br>Portal: ${item.source}` : '';
       const propertyType = item.property_type ? `<br>Type: ${item.property_type}` : '';
       const category = item.category_label ? `<br>Status: ${item.category_label}` : '';
-      const recent = isRecentListing(item) ? '<br>Fresh listing: first week' : '';
+      const recent = isRecentListing(item) ? `<br>Fresh listing: ${escapeHtml(item.market_age_text || 'first week')}` : '';
       const matched = item.matched_name ? `<br>Matched via: ${item.matched_name} (${item.matched_kind}, ${item.match_score})` : '';
       return `<b>${item.title || 'Listing'}</b>${location}${price}${size}${rooms}${portal}${propertyType}${category}${recent}${matched}${linkLine('Open listing', item.listing_url)}${linkLine('Open source search', item.source_url)}`;
     }
