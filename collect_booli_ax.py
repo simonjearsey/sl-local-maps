@@ -70,8 +70,12 @@ def dump_ax(max_count: int = 1200) -> str:
                   try
                     set n to name of e as text
                   end try
+                  set linkURL to ""
+                  try
+                    set linkURL to value of attribute "AXURL" of e as text
+                  end try
                   if r is "AXStaticText" or r is "AXHeading" or r is "AXButton" or r is "AXLink" then
-                    set outText to outText & i & ": " & r & " | " & n & linefeed
+                    set outText to outText & i & ": " & r & " | " & n & " | " & linkURL & linefeed
                   end if
                 end try
               end repeat
@@ -96,7 +100,9 @@ def parse_entries(text: str) -> list[dict]:
             continue
         role = parts[0]
         value = parts[1]
-        if role.endswith("AXHeading"):
+        if role == "AXLink" and value:
+            current["listing_url"] = value
+        elif role.endswith("AXHeading"):
             heading = value
             skip = {
                 "Bostäder till salu i Upplands-Bro kommun",
