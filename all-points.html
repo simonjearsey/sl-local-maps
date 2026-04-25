@@ -21,6 +21,8 @@
       --listing-renovated-ring: rgba(34,197,94,0.24);
       --listing-new: #ef4444;
       --listing-new-ring: rgba(239,68,68,0.24);
+      --listing-recent: #facc15;
+      --listing-recent-ring: rgba(250,204,21,0.28);
     }
     * { box-sizing: border-box; }
     body { margin: 0; font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
@@ -90,6 +92,7 @@
 
       <div class="card legend">
         <div class="legend-item"><span class="swatch stop"></span><span>SL stop points (red)</span></div>
+        <div class="legend-item"><span class="swatch" style="background:var(--listing-recent); box-shadow:0 0 0 3px var(--listing-recent-ring);"></span><span>New listing, first 7 days (yellow)</span></div>
         <div class="legend-item"><span class="swatch" style="background:var(--listing-new); box-shadow:0 0 0 3px var(--listing-new-ring);"></span><span>New construction (red)</span></div>
         <div class="legend-item"><span class="swatch" style="background:var(--listing-old); box-shadow:0 0 0 3px var(--listing-old-ring);"></span><span>Older stock (black)</span></div>
         <div class="legend-item"><span class="swatch" style="background:var(--listing-renovated); box-shadow:0 0 0 3px var(--listing-renovated-ring);"></span><span>Renovated (green)</span></div>
@@ -128,12 +131,21 @@
 
     const LISTING_STYLE = {
       new: { bg: '#ef4444', border: '#7f1d1d', ring: 'rgba(239,68,68,0.24)' },
+      recent: { bg: '#facc15', border: '#854d0e', ring: 'rgba(250,204,21,0.28)' },
       old: { bg: '#111111', border: '#d1d5db', ring: 'rgba(255,255,255,0.18)' },
       renovated: { bg: '#22c55e', border: '#14532d', ring: 'rgba(34,197,94,0.24)' },
     };
 
-    function listingIcon(kind) {
-      const style = LISTING_STYLE[kind] || LISTING_STYLE.old;
+    function isRecentListing(item) {
+      if (!item.first_seen_at) return false;
+      const firstSeen = new Date(item.first_seen_at);
+      if (Number.isNaN(firstSeen.getTime())) return false;
+      const ageMs = Date.now() - firstSeen.getTime();
+      return ageMs >= 0 && ageMs <= 7 * 24 * 60 * 60 * 1000;
+    }
+
+    function listingIcon(kind, item = {}) {
+      const style = isRecentListing(item) ? LISTING_STYLE.recent : (LISTING_STYLE[kind] || LISTING_STYLE.old);
       return L.divIcon({
         className: '',
         html: `<div style="width:16px;height:16px;border-radius:999px;background:${style.bg};border:2px solid ${style.border};color:${style.border};font-size:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px ${style.ring}">⌂</div>`,
@@ -187,8 +199,9 @@
       const portal = item.source ? `<br>Portal: ${item.source}` : '';
       const propertyType = item.property_type ? `<br>Type: ${item.property_type}` : '';
       const category = item.category_label ? `<br>Status: ${item.category_label}` : '';
+      const recent = isRecentListing(item) ? '<br>Fresh listing: first week' : '';
       const matched = item.matched_name ? `<br>Matched via: ${item.matched_name} (${item.matched_kind}, ${item.match_score})` : '';
-      return `<b>${item.title || 'Listing'}</b>${location}${price}${size}${rooms}${portal}${propertyType}${category}${matched}${linkLine('Open listing', item.listing_url)}${linkLine('Open source search', item.source_url)}`;
+      return `<b>${item.title || 'Listing'}</b>${location}${price}${size}${rooms}${portal}${propertyType}${category}${recent}${matched}${linkLine('Open listing', item.listing_url)}${linkLine('Open source search', item.source_url)}`;
     }
 
 
@@ -268,7 +281,7 @@
       });
 
       visibleListings.forEach((item) => {
-        L.marker([item.lat, item.lon], { icon: listingIcon(item.category) }).bindPopup(popupHtmlListing(item)).addTo(listingLayer);
+        L.marker([item.lat, item.lon], { icon: listingIcon(item.category, item) }).bindPopup(popupHtmlListing(item)).addTo(listingLayer);
       });
 
       document.getElementById('countVisibleStops').textContent = visibleStops.length.toLocaleString();
