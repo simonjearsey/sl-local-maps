@@ -34,6 +34,7 @@ def format_filter_label(url: str) -> str:
     labels = []
     for key, values in qs.items():
         clean_key = unquote(key).replace("[]", "")
+        clean_key = {"maxPrice": "price_max", "minRooms": "rooms_min"}.get(clean_key, clean_key)
         labels.append(f"{clean_key}: {', '.join(values)}")
     return "; ".join(labels) or url
 

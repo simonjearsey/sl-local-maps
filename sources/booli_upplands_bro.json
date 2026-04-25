@@ -1,170 +1,8 @@
 {
   "source": "booli",
-  "search_url": "https://www.booli.se/sok/till-salu?areaIds=33",
+  "search_url": "https://www.booli.se/sok/till-salu?areaIds=33&maxPrice=3000000&minRooms=4",
   "fetched_at": "2026-04-20T05:29:19.474244+00:00",
   "items": [
-    {
-      "title": "Brf Odlingslunden",
-      "property_type": "Bostadsrätter",
-      "location": "Upplands-Bro",
-      "price": "995 000 – 2 375 000 kr",
-      "tags": [
-        "Inflyttningsklart",
-        "Under försäljning"
-      ],
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "brf-odlingslunden-upplands-bro-995-000-2-375-000-kr"
-    },
-    {
-      "title": "Svartviksbacken 1C",
-      "property_type": "Lägenhet",
-      "location": "Kungsängen, Upplands-Bro",
-      "price": "1 795 000 kr",
-      "size": "70 m²",
-      "rooms": "3 rum",
-      "status_text": "vån 1",
-      "tags": [
-        "Uteplats"
-      ],
-      "days_on_booli": "2 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "svartviksbacken-1c-kungsängen-upplands-bro-1-795-000-kr"
-    },
-    {
-      "title": "Spireavägen 1",
-      "property_type": "Villa",
-      "location": "Bro, Upplands-Bro",
-      "price": "5 995 000 kr",
-      "size": "146 m²",
-      "rooms": "6 rum",
-      "status_text": "1 026 m² tomt",
-      "tags": [
-        "Balkong",
-        "Uteplats"
-      ],
-      "days_on_booli": "2 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "spireavägen-1-bro-upplands-bro-5-995-000-kr"
-    },
-    {
-      "title": "Vinlandsvägen 13B",
-      "property_type": "Parhus",
-      "location": "Jursta, Upplands-Bro",
-      "price": "3 895 000 kr",
-      "size": "132 m²",
-      "rooms": "6 rum",
-      "status_text": "6 716 kr/mån",
-      "tags": [
-        "Uteplats"
-      ],
-      "days_on_booli": "2 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "vinlandsvägen-13b-jursta-upplands-bro-3-895-000-kr"
-    },
-    {
-      "title": "Hjortronvägen 13",
-      "property_type": "Lägenhet",
-      "location": "Kungsängen, Upplands-Bro",
-      "price": "1 995 000 kr",
-      "size": "98 m²",
-      "rooms": "3 rum",
-      "status_text": "vån 1",
-      "days_on_booli": "2 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "hjortronvägen-13-kungsängen-upplands-bro-1-995-000-kr"
-    },
-    {
-      "title": "Unnas väg 4",
-      "property_type": "Lägenhet",
-      "location": "Bro, Upplands-Bro",
-      "price": "1 595 000 kr",
-      "size": "55 m²",
-      "rooms": "2 rum",
-      "status_text": "vån 2",
-      "tags": [
-        "Hiss",
-        "Balkong"
-      ],
-      "days_on_booli": "3 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "unnas-väg-4-bro-upplands-bro-1-595-000-kr"
-    },
-    {
-      "title": "Husbytorpsvägen 12B",
-      "property_type": "Parhus",
-      "location": "Bro, Upplands-Bro",
-      "price": "3 695 000 kr",
-      "size": "110 m²",
-      "rooms": "4 rum",
-      "status_text": "4 997 kr/mån",
-      "tags": [
-        "Eldstad",
-        "Uteplats"
-      ],
-      "days_on_booli": "3 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "husbytorpsvägen-12b-bro-upplands-bro-3-695-000-kr"
-    },
-    {
-      "title": "Norrbodavägen 10",
-      "property_type": "Lägenhet",
-      "location": "Bro, Upplands-Bro",
-      "price": "1 895 000 kr",
-      "size": "63 m²",
-      "rooms": "2 rum",
-      "status_text": "vån 2",
-      "tags": [
-        "Balkong"
-      ],
-      "days_on_booli": "3 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "norrbodavägen-10-bro-upplands-bro-1-895-000-kr"
-    },
-    {
-      "title": "Rankhusvägen 10A",
-      "property_type": "Villa",
-      "location": "Kungsängen, Upplands-Bro",
-      "price": "5 750 000 kr",
-      "size": "107 m²",
-      "rooms": "4 rum",
-      "status_text": "1 179 m² tomt",
-      "tags": [
-        "Eldstad"
-      ],
-      "days_on_booli": "3 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "rankhusvägen-10a-kungsängen-upplands-bro-5-750-000-kr"
-    },
-    {
-      "title": "Tibble Torg 5",
-      "property_type": "Lägenhet",
-      "location": "Kungsängen, Upplands-Bro",
-      "price": "1 395 000 kr",
-      "size": "73,5 m²",
-      "rooms": "2 rum",
-      "status_text": "vån 5",
-      "tags": [
-        "Hiss",
-        "Balkong"
-      ],
-      "days_on_booli": "3 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "tibble-torg-5-kungsängen-upplands-bro-1-395-000-kr"
-    },
-    {
-      "title": "Gröna vägen 4",
-      "property_type": "Villa",
-      "location": "Håbo-Tibble, Upplands-Bro",
-      "price": "5 995 000 kr",
-      "rooms": "5 rum",
-      "tags": [
-        "Eldstad",
-        "Uteplats"
-      ],
-      "days_on_booli": "3 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "gröna-vägen-4-håbo-tibble-upplands-bro-5-995-000-kr"
-    },
     {
       "title": "Ådövägen 4",
       "property_type": "Villa",
@@ -174,23 +12,8 @@
       "rooms": "8 rum",
       "status_text": "2 595 m² tomt",
       "days_on_booli": "3 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
+      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33&maxPrice=3000000&minRooms=4",
       "source_id": "ådövägen-4-ådö-upplands-bro-2-975-000-kr"
-    },
-    {
-      "title": "Lennartsnäs Slott 1",
-      "property_type": "Lägenhet",
-      "location": "Lennartsnäs, Upplands-Bro",
-      "price": "12 900 000 kr",
-      "size": "180 m²",
-      "rooms": "3 rum",
-      "status_text": "6 769 kr/mån",
-      "tags": [
-        "Eldstad"
-      ],
-      "days_on_booli": "3 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "lennartsnäs-slott-1-lennartsnäs-upplands-bro-12-900-000-kr"
     },
     {
       "title": "Ringvägen 16",
@@ -205,40 +28,8 @@
         "Balkong"
       ],
       "days_on_booli": "3 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
+      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33&maxPrice=3000000&minRooms=4",
       "source_id": "ringvägen-16-kungsängen-upplands-bro-2-795-000-kr"
-    },
-    {
-      "title": "Ringvägen 16",
-      "property_type": "Lägenhet",
-      "location": "Kungsängen, Upplands-Bro",
-      "price": "1 995 000 kr",
-      "size": "58,9 m²",
-      "rooms": "2 rum",
-      "status_text": "vån 2",
-      "tags": [
-        "Hiss",
-        "Uteplats"
-      ],
-      "days_on_booli": "3 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "ringvägen-16-kungsängen-upplands-bro-1-995-000-kr"
-    },
-    {
-      "title": "Kokillbacken 1",
-      "property_type": "Lägenhet",
-      "location": "Kungsängen, Upplands-Bro",
-      "price": "2 895 000 kr",
-      "size": "68 m²",
-      "rooms": "3 rum",
-      "status_text": "vån 5",
-      "tags": [
-        "Hiss",
-        "Balkong"
-      ],
-      "days_on_booli": "4 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "kokillbacken-1-kungsängen-upplands-bro-2-895-000-kr"
     },
     {
       "title": "Tarantellastigen 24",
@@ -252,116 +43,8 @@
         "Uteplats"
       ],
       "days_on_booli": "4 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
+      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33&maxPrice=3000000&minRooms=4",
       "source_id": "tarantellastigen-24-kungsängen-södra-brunna-upplands-bro-2-495-000-kr"
-    },
-    {
-      "title": "Jägersdalsvägen 10",
-      "property_type": "Villa",
-      "location": "Tibble, Upplands-Bro",
-      "price": "6 495 000 kr",
-      "size": "129 m²",
-      "rooms": "4 rum",
-      "days_on_booli": "5 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "jägersdalsvägen-10-tibble-upplands-bro-6-495-000-kr"
-    },
-    {
-      "title": "Rönnbärsvägen 53",
-      "property_type": "Lägenhet",
-      "location": "Kungsängen, Upplands-Bro",
-      "price": "1 795 000 kr",
-      "size": "84 m²",
-      "rooms": "3 rum",
-      "status_text": "vån 2",
-      "tags": [
-        "Balkong"
-      ],
-      "days_on_booli": "5 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "rönnbärsvägen-53-kungsängen-upplands-bro-1-795-000-kr"
-    },
-    {
-      "title": "Tjusta Skolväg 6",
-      "property_type": "Villa",
-      "location": "Bro, Upplands-Bro",
-      "price": "7 495 000 kr",
-      "rooms": "6 rum",
-      "status_text": "5 241 m² tomt",
-      "tags": [
-        "Eldstad",
-        "Uteplats"
-      ],
-      "days_on_booli": "5 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "tjusta-skolväg-6-bro-upplands-bro-7-495-000-kr"
-    },
-    {
-      "title": "Hallonvägen 92",
-      "property_type": "Lägenhet",
-      "location": "Kungsängen, Upplands-Bro",
-      "price": "1 750 000 kr",
-      "size": "67 m²",
-      "rooms": "2 rum",
-      "status_text": "vån 1",
-      "tags": [
-        "Uteplats"
-      ],
-      "days_on_booli": "6 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "hallonvägen-92-kungsängen-upplands-bro-1-750-000-kr"
-    },
-    {
-      "title": "Björkvägen 9",
-      "property_type": "Villa",
-      "location": "Bro, Upplands-Bro",
-      "price": "4 995 000 kr",
-      "rooms": "6 rum",
-      "size": "858 m² tomt",
-      "days_on_booli": "6 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "björkvägen-9-bro-upplands-bro-4-995-000-kr"
-    },
-    {
-      "title": "Målarvägen 15",
-      "property_type": "Radhus",
-      "location": "Bro, Upplands-Bro",
-      "price": "3 695 000 kr",
-      "rooms": "5 rum",
-      "size": "224 m² tomt",
-      "tags": [
-        "Balkong",
-        "Eldstad",
-        "Uteplats"
-      ],
-      "days_on_booli": "7 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "målarvägen-15-bro-upplands-bro-3-695-000-kr"
-    },
-    {
-      "title": "Hjärtstensvägen 13",
-      "property_type": "Lägenhet",
-      "location": "Kungsängen, Upplands-Bro",
-      "price": "1 695 000 kr",
-      "size": "54 m²",
-      "rooms": "2 rum",
-      "status_text": "vån 3",
-      "tags": [
-        "Hiss"
-      ],
-      "days_on_booli": "9 dagar på Booli",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "hjärtstensvägen-13-kungsängen-upplands-bro-1-695-000-kr"
-    },
-    {
-      "title": "Tvärvägen 7",
-      "property_type": "Villa",
-      "location": "Kungsängen, Upplands-Bro",
-      "price": "5 595 000 kr",
-      "size": "152,8 m²",
-      "rooms": "6 rum",
-      "source_url": "https://www.booli.se/sok/till-salu?areaIds=33",
-      "source_id": "tvärvägen-7-kungsängen-upplands-bro-5-595-000-kr"
     }
   ]
 }
