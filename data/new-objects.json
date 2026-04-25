@@ -1,0 +1,60 @@
+{
+  "count": 5,
+  "items": [
+    {
+      "title": "Birdie |",
+      "location": "Centrala Tyresö, Tyresö kommun",
+      "price": "fr. 2 795 000 kr",
+      "rooms": "2-5 rum",
+      "size": "48-103 m²",
+      "source": "hemnet",
+      "listing_url": null,
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4",
+      "matched_name": "Tyresö"
+    },
+    {
+      "title": "Utblicken |",
+      "location": "Huvudsta Strandpark, Solna kommun",
+      "price": "fr. 2 290 000 kr",
+      "rooms": "1-6 rum",
+      "size": "27-148 m²",
+      "source": "hemnet",
+      "listing_url": null,
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4",
+      "matched_name": "Huvudsta"
+    },
+    {
+      "title": "Fredman i Hägersten |",
+      "location": "Hägersten, Stockholms kommun",
+      "price": "fr. 1 895 000 kr",
+      "rooms": "1-4 rum",
+      "size": "31-93 m²",
+      "source": "hemnet",
+      "listing_url": null,
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4",
+      "matched_name": "Hägerstensåsen"
+    },
+    {
+      "title": "Näsby Dunge |",
+      "location": "Roslags-Näsby, Täby kommun",
+      "price": "fr. 1 695 000 kr",
+      "rooms": "1-5 rum",
+      "size": "30-110 m²",
+      "source": "hemnet",
+      "listing_url": null,
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4",
+      "matched_name": "Roslags Näsby"
+    },
+    {
+      "title": "Vide |",
+      "location": "Åkersberga, Österåkers kommun",
+      "price": "fr. 1 990 000 kr",
+      "rooms": "2-4 rum",
+      "size": "36-97 m²",
+      "source": "hemnet",
+      "listing_url": null,
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4",
+      "matched_name": "Åkersberga"
+    }
+  ]
+}

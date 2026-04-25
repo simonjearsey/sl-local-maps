@@ -13,12 +13,12 @@ DATA_DIR = SITE_DIR / "data"
 STOPS_OUT = DATA_DIR / "sl-stop-points.json"
 
 HTML = """<!DOCTYPE html>
-<html lang=\"en\">
+<html lang="en">
 <head>
-  <meta charset=\"UTF-8\" />
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SL stop points and property listings</title>
-  <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.css\" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     :root {
       --bg: #0b1020;
@@ -37,7 +37,7 @@ HTML = """<!DOCTYPE html>
       --listing-new-ring: rgba(239,68,68,0.24);
     }
     * { box-sizing: border-box; }
-    body { margin: 0; font: 14px/1.45 -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif; background: var(--bg); color: var(--text); }
+    body { margin: 0; font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
     .wrap { display: grid; grid-template-columns: 380px 1fr; height: 100vh; }
     .side { padding: 16px; overflow: auto; background: var(--panel); border-right: 1px solid var(--line); }
     #map { height: 100vh; width: 100%; }
@@ -55,58 +55,83 @@ HTML = """<!DOCTYPE html>
     .swatch { width: 12px; height: 12px; border-radius: 999px; display: inline-block; }
     .swatch.stop { background: var(--stop); box-shadow: 0 0 0 3px rgba(255,107,107,0.18); }
     .small { font-size: 12px; }
+    .project-meta { margin: 10px 0 14px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: #0f1730; }
+    .project-meta b { color: var(--text); }
+    .data-list { display: grid; gap: 10px; }
+    .data-row { border-top: 1px solid var(--line); padding-top: 8px; }
+    .data-row:first-child { border-top: 0; padding-top: 0; }
+    .pill { display: inline-block; margin: 2px 4px 2px 0; padding: 2px 6px; border-radius: 999px; background: #0d1430; border: 1px solid #314266; color: var(--muted); font-size: 11px; }
+    .price-delta.plus { color: #22c55e; }
+    .price-delta.minus { color: #ff6b6b; }
     a { color: #9bc3ff; }
     @media (max-width: 960px) { .wrap { grid-template-columns: 1fr; grid-template-rows: auto 60vh; } #map { height: 60vh; } }
   </style>
 </head>
 <body>
-  <div class=\"wrap\">
-    <div class=\"side\">
+  <div class="wrap">
+    <div class="side">
       <h1>SL stop points + property listings</h1>
-      <p class=\"subtle\">Stops come from the local SL SQLite DB. Listings come from the local listings DB, with real source links kept when known.</p>
+      <p class="subtle">Stops come from the local SL SQLite DB. Listings come from the local listings DB, with real source links kept when known.</p>
+      <div class="project-meta small subtle" id="projectMeta">Version loading…</div>
 
-      <div class=\"card stats\" id=\"stats\"></div>
+      <div class="card stats" id="stats"></div>
 
-      <div class=\"card\">
+      <div class="card">
         <h2>Find</h2>
-        <div style=\"margin-bottom:8px;\"><input id=\"search\" placeholder=\"Search stop, address, listing, or area\" /></div>
-        <div class=\"row\">
-          <select id=\"type\">
-            <option value=\"ALL\">All stop types</option>
-            <option value=\"BUSSTOP\">Bus stops</option>
-            <option value=\"PLATFORM\">Platforms</option>
-            <option value=\"PIER\">Piers</option>
+        <div style="margin-bottom:8px;"><input id="search" placeholder="Search stop, address, listing, or area" /></div>
+        <div class="row">
+          <select id="type">
+            <option value="ALL">All stop types</option>
+            <option value="BUSSTOP">Bus stops</option>
+            <option value="PLATFORM">Platforms</option>
+            <option value="PIER">Piers</option>
           </select>
-          <select id=\"listingFilter\">
-            <option value=\"ALL\">Listings + SL</option>
-            <option value=\"STOPS_ONLY\">SL only</option>
-            <option value=\"LISTINGS_ONLY\">Listings only</option>
+          <select id="listingFilter">
+            <option value="ALL">Listings + SL</option>
+            <option value="STOPS_ONLY">SL only</option>
+            <option value="LISTINGS_ONLY">Listings only</option>
           </select>
         </div>
-        <div class=\"row\" style=\"margin-top:8px;\">
-          <select id=\"portalFilter\">
-            <option value=\"ALL\">All portals</option>
-            <option value=\"hemnet\">Hemnet</option>
-            <option value=\"booli\">Booli</option>
+        <div class="row" style="margin-top:8px;">
+          <select id="portalFilter">
+            <option value="ALL">All portals</option>
+            <option value="hemnet">Hemnet</option>
+            <option value="booli">Booli</option>
           </select>
-          <button id=\"reset\">Reset view</button>
+          <button id="reset">Reset view</button>
         </div>
       </div>
 
-      <div class=\"card legend\">
-        <div class=\"legend-item\"><span class=\"swatch stop\"></span><span>SL stop points (red)</span></div>
-        <div class=\"legend-item\"><span class=\"swatch\" style=\"background:var(--listing-new); box-shadow:0 0 0 3px var(--listing-new-ring);\"></span><span>New construction (red)</span></div>
-        <div class=\"legend-item\"><span class=\"swatch\" style=\"background:var(--listing-old); box-shadow:0 0 0 3px var(--listing-old-ring);\"></span><span>Older stock (black)</span></div>
-        <div class=\"legend-item\"><span class=\"swatch\" style=\"background:var(--listing-renovated); box-shadow:0 0 0 3px var(--listing-renovated-ring);\"></span><span>Renovated (green)</span></div>
-        <div class=\"small subtle\">Basemap toggle is in the top-right corner. Satellite uses Esri World Imagery.</div>
+      <div class="card legend">
+        <div class="legend-item"><span class="swatch stop"></span><span>SL stop points (red)</span></div>
+        <div class="legend-item"><span class="swatch" style="background:var(--listing-new); box-shadow:0 0 0 3px var(--listing-new-ring);"></span><span>New construction (red)</span></div>
+        <div class="legend-item"><span class="swatch" style="background:var(--listing-old); box-shadow:0 0 0 3px var(--listing-old-ring);"></span><span>Older stock (black)</span></div>
+        <div class="legend-item"><span class="swatch" style="background:var(--listing-renovated); box-shadow:0 0 0 3px var(--listing-renovated-ring);"></span><span>Renovated (green)</span></div>
+        <div class="small subtle">Basemap toggle is in the top-right corner. Satellite uses Esri World Imagery.</div>
       </div>
 
-      <div class=\"card subtle small\" id=\"matchNote\"></div>
+      <div class="card subtle small" id="matchNote"></div>
+
+      <div class="card small">
+        <h2>Listing search parameters</h2>
+        <div class="data-list" id="searchParameters">Loading…</div>
+      </div>
+
+      <div class="card small">
+        <h2>New objects</h2>
+        <div class="data-list" id="newObjects">Loading…</div>
+      </div>
+
+      <div class="card small">
+        <h2>Sold items</h2>
+        <div class="subtle" style="margin-bottom:8px;">Final sold price compared with the initially captured listing price.</div>
+        <div class="data-list" id="soldItems">Loading…</div>
+      </div>
     </div>
-    <div id=\"map\"></div>
+    <div id="map"></div>
   </div>
 
-  <script src=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.js\"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const STOP_STYLE = {
       BUSSTOP: { radius: 2.4, color: '#ff6b6b', fillColor: '#ff9b9b', fillOpacity: 0.55, weight: 0.45 },
@@ -143,6 +168,22 @@ HTML = """<!DOCTYPE html>
 
     const state = { stops: [], listings: [] };
 
+    function formatPublishedAt(value) {
+      if (!value) return 'unknown';
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return value;
+      return date.toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+    }
+
+    fetch('./data/version.json', { cache: 'no-store' })
+      .then((r) => r.json())
+      .then((meta) => {
+        document.getElementById('projectMeta').innerHTML = `<b>${meta.version || 'unversioned'}</b> · published ${formatPublishedAt(meta.published_at)} · branch ${meta.source_branch || 'main'}`;
+      })
+      .catch(() => {
+        document.getElementById('projectMeta').textContent = 'Version metadata unavailable';
+      });
+
     function popupHtmlStop(point) {
       return `<b>${point.name}</b><br>${point.stop_area_name ? `Area: ${point.stop_area_name}<br>` : ''}Type: ${point.type}<br>${point.designation ? `Designation: ${point.designation}<br>` : ''}ID: ${point.id}`;
     }
@@ -162,6 +203,52 @@ HTML = """<!DOCTYPE html>
       const category = item.category_label ? `<br>Status: ${item.category_label}` : '';
       const matched = item.matched_name ? `<br>Matched via: ${item.matched_name} (${item.matched_kind}, ${item.match_score})` : '';
       return `<b>${item.title || 'Listing'}</b>${location}${price}${size}${rooms}${portal}${propertyType}${category}${matched}${linkLine('Open listing', item.listing_url)}${linkLine('Open source search', item.source_url)}`;
+    }
+
+
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
+    }
+
+    function linkOrSource(item) {
+      const href = item.listing_url || item.source_url || item.url;
+      return href ? ` · <a href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">open</a>` : '';
+    }
+
+    function renderListingSummaries() {
+      fetch('./data/search-parameters.json', { cache: 'no-store' }).then((r) => r.json()).then((payload) => {
+        const rows = payload.items || [];
+        document.getElementById('searchParameters').innerHTML = rows.length ? rows.map((item) => `
+          <div class="data-row"><b>${escapeHtml(item.source)}</b>${linkOrSource(item)}<br><span class="subtle">${escapeHtml(item.parameters)}</span></div>
+        `).join('') : `<span class="subtle">No search metadata available.</span>`;
+      }).catch((error) => {
+        document.getElementById('searchParameters').textContent = `Failed to load search parameters: ${error.message}`;
+      });
+
+      fetch('./data/new-objects.json', { cache: 'no-store' }).then((r) => r.json()).then((payload) => {
+        const rows = payload.items || [];
+        document.getElementById('newObjects').innerHTML = rows.length ? rows.map((item) => `
+          <div class="data-row"><b>${escapeHtml(item.title)}</b>${linkOrSource(item)}<br>
+          <span class="subtle">${escapeHtml(item.location)}${item.matched_name ? ` · near ${escapeHtml(item.matched_name)}` : ''}</span><br>
+          <span class="pill">${escapeHtml(item.price || 'price unknown')}</span><span class="pill">${escapeHtml(item.rooms || 'rooms unknown')}</span><span class="pill">${escapeHtml(item.size || 'size unknown')}</span></div>
+        `).join('') : `<span class="subtle">No new-construction objects in the current listing set.</span>`;
+      }).catch((error) => {
+        document.getElementById('newObjects').textContent = `Failed to load new objects: ${error.message}`;
+      });
+
+      fetch('./data/sold-listings.json', { cache: 'no-store' }).then((r) => r.json()).then((payload) => {
+        const rows = payload.items || [];
+        document.getElementById('soldItems').innerHTML = rows.length ? rows.map((item) => {
+          const delta = item.delta_kr == null ? 'n/a' : `${item.delta_kr > 0 ? '+' : ''}${item.delta_kr.toLocaleString()} kr (${item.delta_pct > 0 ? '+' : ''}${item.delta_pct}%)`;
+          const deltaClass = item.delta_kr > 0 ? 'plus' : item.delta_kr < 0 ? 'minus' : '';
+          return `<div class="data-row"><b>${escapeHtml(item.title)}</b>${linkOrSource(item)}<br>
+            <span class="subtle">${escapeHtml(item.location || '')}${item.sold_at ? ` · sold ${escapeHtml(item.sold_at)}` : ''}</span><br>
+            <span class="pill">initial ${escapeHtml(item.initial_price || item.list_price || 'unknown')}</span><span class="pill">sold ${escapeHtml(item.sold_price || item.final_price || 'unknown')}</span><span class="price-delta ${deltaClass}">${escapeHtml(delta)}</span></div>`;
+        }).join('') : `<span class="subtle">${escapeHtml(payload.note || 'No sold items captured yet.')}</span>`;
+      }).catch((error) => {
+        document.getElementById('soldItems').textContent = `Failed to load sold items: ${error.message}`;
+      });
     }
 
     function render() {
@@ -212,7 +299,15 @@ HTML = """<!DOCTYPE html>
     }
 
     document.getElementById('reset').addEventListener('click', resetView);
-    document.getElementById('search').addEventListener('input', render);
+    // Added debounce for better performance
+    function debounce(func, wait) {
+      let timeout;
+      return function() {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, arguments), wait);
+      };
+    }
+    document.getElementById('search').addEventListener('input', debounce(render, 250));
     document.getElementById('type').addEventListener('change', render);
     document.getElementById('listingFilter').addEventListener('change', render);
     document.getElementById('portalFilter').addEventListener('change', render);
@@ -223,6 +318,8 @@ HTML = """<!DOCTYPE html>
       <div class="stat"><span class="subtle">Listings</span><b id="countListings"></b></div>
       <div class="stat"><span class="subtle">Visible listings</span><b id="countVisibleListings"></b></div>
     `;
+
+    renderListingSummaries();
 
     Promise.all([
       fetch('./data/sl-stop-points.json').then((r) => r.json()),

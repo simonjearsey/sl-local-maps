@@ -1,0 +1,15 @@
+{
+  "items": [
+    {
+      "source": "booli",
+      "url": "https://www.booli.se/sok/till-salu?areaIds=33",
+      "parameters": "areaIds: 33"
+    },
+    {
+      "source": "hemnet",
+      "url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4",
+      "parameters": "location_ids: 17744; price_max: 3000000; rooms_min: 4"
+    }
+  ],
+  "note": "These are the source search URLs/filters used by the currently published local listing dataset."
+}
