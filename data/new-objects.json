@@ -8,8 +8,15 @@
       "rooms": "2-5 rum",
       "size": "48-103 m²",
       "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
       "listing_url": null,
+      "listing_urls": [],
       "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4"
+      ],
       "matched_name": "Tyresö"
     },
     {
@@ -19,8 +26,15 @@
       "rooms": "1-6 rum",
       "size": "27-148 m²",
       "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
       "listing_url": null,
+      "listing_urls": [],
       "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4"
+      ],
       "matched_name": "Huvudsta"
     },
     {
@@ -30,8 +44,15 @@
       "rooms": "1-4 rum",
       "size": "31-93 m²",
       "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
       "listing_url": null,
+      "listing_urls": [],
       "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4"
+      ],
       "matched_name": "Hägerstensåsen"
     },
     {
@@ -41,8 +62,15 @@
       "rooms": "1-5 rum",
       "size": "30-110 m²",
       "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
       "listing_url": null,
+      "listing_urls": [],
       "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4"
+      ],
       "matched_name": "Roslags Näsby"
     },
     {
@@ -52,8 +80,15 @@
       "rooms": "2-4 rum",
       "size": "36-97 m²",
       "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
       "listing_url": null,
+      "listing_urls": [],
       "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4"
+      ],
       "matched_name": "Åkersberga"
     }
   ]

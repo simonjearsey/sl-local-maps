@@ -98,10 +98,11 @@ def parse_entries(text: str) -> list[dict]:
         parts = [part.strip() for part in raw.split("|")]
         if len(parts) < 2:
             continue
-        role = parts[0]
+        role = parts[0].split(":", 1)[-1].strip()
         value = parts[1]
         if role == "AXLink" and value:
-            current["listing_url"] = value
+            if current is not None and value.startswith("http"):
+                current["listing_url"] = value
         elif role.endswith("AXHeading"):
             heading = value
             skip = {
@@ -156,17 +157,28 @@ def parse_entries(text: str) -> list[dict]:
     return cleaned
 
 
-def collect(url: str, out_path: Path, steps: int, delay: float) -> None:
+def collect(url: str, out_path: Path, steps: int, delay: float, max_ax_nodes: int = 500) -> None:
     chrome_open(url)
     time.sleep(8)
     entries: dict[tuple, dict] = {}
     for step in range(steps):
-        snap = dump_ax(1400)
+        try:
+            snap = dump_ax(max_ax_nodes)
+        except Exception as exc:
+            print(f"WARNING: stopped Booli AX collection at step {step + 1}: {exc}")
+            break
         for item in parse_entries(snap):
             key = (item.get("title"), item.get("location"), item.get("price"))
             item["source_url"] = url
             item["source_id"] = re.sub(r"\W+", "-", "|".join(str(part or "") for part in key).lower()).strip("-")[:120]
             entries[key] = {**entries.get(key, {}), **item}
+        payload = {
+            "source": "booli",
+            "search_url": url,
+            "fetched_at": datetime.now(timezone.utc).isoformat(),
+            "items": list(entries.values()),
+        }
+        out_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2))
         page_down(4)
         time.sleep(delay)
     payload = {
@@ -184,8 +196,9 @@ def main() -> None:
     parser.add_argument("out")
     parser.add_argument("--steps", type=int, default=18)
     parser.add_argument("--delay", type=float, default=1.2)
+    parser.add_argument("--max-ax-nodes", type=int, default=500)
     args = parser.parse_args()
-    collect(args.url, Path(args.out), args.steps, args.delay)
+    collect(args.url, Path(args.out), args.steps, args.delay, args.max_ax_nodes)
     print(f"Wrote {args.out}")
 
 

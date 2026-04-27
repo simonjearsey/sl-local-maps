@@ -34,7 +34,7 @@ def format_filter_label(url: str) -> str:
     labels = []
     for key, values in qs.items():
         clean_key = unquote(key).replace("[]", "")
-        clean_key = {"maxPrice": "price_max", "minRooms": "rooms_min"}.get(clean_key, clean_key)
+        clean_key = {"maxPrice": "price_max", "maxListPrice": "price_max", "minRooms": "rooms_min"}.get(clean_key, clean_key)
         labels.append(f"{clean_key}: {', '.join(values)}")
     return "; ".join(labels) or url
 
@@ -42,10 +42,12 @@ def format_filter_label(url: str) -> str:
 def build_search_parameters(items: list[dict]) -> dict:
     source_urls: dict[str, set[str]] = {}
     for item in items:
-        source = item.get("source") or "unknown"
-        url = item.get("source_url")
-        if url:
-            source_urls.setdefault(source, set()).add(url)
+        sources = item.get("sources") or [item.get("source") or "unknown"]
+        urls = item.get("source_urls") or ([item.get("source_url")] if item.get("source_url") else [])
+        for source in sources:
+            for url in urls:
+                if url:
+                    source_urls.setdefault(source, set()).add(url)
 
     rows = []
     for source, urls in sorted(source_urls.items()):
@@ -75,8 +77,11 @@ def build_new_objects(items: list[dict]) -> dict:
                 "rooms": item.get("rooms"),
                 "size": item.get("size"),
                 "source": item.get("source"),
+                "sources": item.get("sources") or [item.get("source")],
                 "listing_url": item.get("listing_url"),
+                "listing_urls": item.get("listing_urls") or [],
                 "source_url": item.get("source_url"),
+                "source_urls": item.get("source_urls") or [],
                 "matched_name": item.get("matched_name"),
             }
             for item in new_items

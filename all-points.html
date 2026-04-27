@@ -211,12 +211,15 @@
       const price = item.price ? `<br>Price: ${item.price}` : '';
       const size = item.size ? `<br>Size: ${item.size}` : '';
       const rooms = item.rooms ? `<br>Rooms: ${item.rooms}` : '';
-      const portal = item.source ? `<br>Portal: ${item.source}` : '';
+      const portals = item.sources && item.sources.length ? item.sources.join(', ') : item.source;
+      const portal = portals ? `<br>Portal: ${escapeHtml(portals)}` : '';
       const propertyType = item.property_type ? `<br>Type: ${item.property_type}` : '';
       const category = item.category_label ? `<br>Status: ${item.category_label}` : '';
       const recent = isRecentListing(item) ? `<br>Fresh listing: ${escapeHtml(item.market_age_text || 'first week')}` : '';
       const matched = item.matched_name ? `<br>Matched via: ${item.matched_name} (${item.matched_kind}, ${item.match_score})` : '';
-      return `<b>${item.title || 'Listing'}</b>${location}${price}${size}${rooms}${portal}${propertyType}${category}${recent}${matched}${linkLine('Open listing', item.listing_url)}${linkLine('Open source search', item.source_url)}`;
+      const listingLinks = (item.listing_urls && item.listing_urls.length ? item.listing_urls : [item.listing_url]).filter(Boolean);
+      const sourceLinks = (item.source_urls && item.source_urls.length ? item.source_urls : [item.source_url]).filter(Boolean);
+      return `<b>${escapeHtml(item.title || 'Listing')}</b>${location}${price}${size}${rooms}${portal}${propertyType}${category}${recent}${matched}${listingLinks.map((url, idx) => linkLine(idx ? `Open listing ${idx + 1}` : 'Open listing', url)).join('')}${sourceLinks.map((url, idx) => linkLine(idx ? `Open source search ${idx + 1}` : 'Open source search', url)).join('')}`;
     }
 
 
@@ -226,7 +229,7 @@
     }
 
     function linkOrSource(item) {
-      const href = item.listing_url || item.source_url || item.url;
+      const href = item.listing_url || (item.listing_urls || [])[0] || item.source_url || (item.source_urls || [])[0] || item.url;
       return href ? ` · <a href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">open</a>` : '';
     }
 
@@ -285,7 +288,8 @@
 
       const visibleListings = state.listings.filter((item) => {
         if (listingMode === 'STOPS_ONLY') return false;
-        if (portal !== 'ALL' && item.source !== portal) return false;
+        const portals = item.sources || [item.source];
+        if (portal !== 'ALL' && !portals.includes(portal)) return false;
         
         const price = parseInt(item.price ? String(item.price).replace(/\D/g, '') : 0, 10) || 0;
         const rooms = parseFloat(String(item.rooms || '').replace(',', '.')) || 0;

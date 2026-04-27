@@ -199,11 +199,53 @@ def dedupe_key(source: str, source_id: str, title: str, location: str, price: st
     return hashlib.sha1(payload.encode("utf-8")).hexdigest()
 
 
+def listing_identity_key(title: str, location: str, price: str = "") -> str:
+    """Cross-portal identity key for deduplicating Hemnet/Booli rows.
+
+    Source ids are portal-specific, so they cannot be used for the public listing set.
+    Titles are normally street addresses or project names; combining normalized title
+    and locality dedupes the same object across Hemnet and Booli while keeping
+    distinct objects in different municipalities separate.
+    """
+    title_norm = normalize_title(title)
+    location_norm = normalize(location).split(",")[0].strip()
+    if title_norm and location_norm:
+        return hashlib.sha1(f"listing:{title_norm}|{location_norm}".encode("utf-8")).hexdigest()
+    return dedupe_key("listing", "", title, location, price)
+
+
 def merge_row(existing: dict[str, Any], incoming: dict[str, Any]) -> dict[str, Any]:
     merged = dict(existing)
+    sources = set(merged.get("sources") or ([merged.get("source")] if merged.get("source") else []))
+    sources.update(incoming.get("sources") or ([incoming.get("source")] if incoming.get("source") else []))
+    if sources:
+        merged["sources"] = sorted(sources)
+        merged["source"] = "+".join(sorted(sources))
+
+    source_urls = {item for item in (merged.get("source_urls") or []) if item}
+    if merged.get("source_url"):
+        source_urls.add(merged["source_url"])
+    if incoming.get("source_url"):
+        source_urls.add(incoming["source_url"])
+    source_urls.update(item for item in (incoming.get("source_urls") or []) if item)
+    if source_urls:
+        merged["source_urls"] = sorted(source_urls)
+
+    listing_urls = {item for item in (merged.get("listing_urls") or []) if item}
+    if merged.get("listing_url"):
+        listing_urls.add(merged["listing_url"])
+    if incoming.get("listing_url"):
+        listing_urls.add(incoming["listing_url"])
+    listing_urls.update(item for item in (incoming.get("listing_urls") or []) if item)
+    if listing_urls:
+        merged["listing_urls"] = sorted(listing_urls)
     for key, value in incoming.items():
         if value not in (None, "", [], {}):
             merged[key] = value
+    if source_urls and not merged.get("source_url"):
+        merged["source_url"] = sorted(source_urls)[0]
+    if listing_urls and not merged.get("listing_url"):
+        merged["listing_url"] = sorted(listing_urls)[0]
     return merged
 
 
@@ -255,9 +297,12 @@ def canonical_rows() -> list[dict[str, Any]]:
 
         row = {
             "source": source,
+            "sources": [source],
             "source_id": source_id,
             "source_url": record.get("source_url"),
+            "source_urls": [record.get("source_url")] if record.get("source_url") else [],
             "listing_url": record.get("listing_url"),
+            "listing_urls": [record.get("listing_url")] if record.get("listing_url") else [],
             "title": title,
             "location": location,
             "address": record.get("address") or title.rstrip(" |"),
@@ -277,7 +322,7 @@ def canonical_rows() -> list[dict[str, Any]]:
         }
         if match:
             row.update(match)
-        row_key = dedupe_key(source, source_id, title, location, row.get("price") or "")
+        row_key = listing_identity_key(title, location, row.get("price") or "")
         rows_by_key[row_key] = merge_row(rows_by_key.get(row_key, {}), row)
 
     return list(rows_by_key.values())
