@@ -176,11 +176,17 @@
       return Number.isFinite(item.market_age_days) && item.market_age_days <= 7;
     }
 
+    function hasUnknownPrice(item = {}) {
+      const price = String(item.price ?? '').trim().toLowerCase();
+      return !price || price === 'pris ej angivet';
+    }
+
     function listingIcon(kind, item = {}) {
       const style = isRecentListing(item) ? LISTING_STYLE.recent : (LISTING_STYLE[kind] || LISTING_STYLE.old);
+      const glyph = hasUnknownPrice(item) ? '?' : '⌂';
       return L.divIcon({
         className: '',
-        html: `<div style="width:16px;height:16px;border-radius:999px;background:${style.bg};border:2px solid ${style.border};color:${style.border};font-size:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px ${style.ring}">⌂</div>`,
+        html: `<div style="width:16px;height:16px;border-radius:999px;background:${style.bg};border:2px solid ${style.border};color:${style.border};font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px ${style.ring}">${glyph}</div>`,
         iconSize: [16, 16],
         iconAnchor: [8, 8],
         popupAnchor: [0, -8],
