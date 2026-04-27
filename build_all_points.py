@@ -384,10 +384,9 @@ def export_stop_points() -> list[dict]:
 def main() -> None:
     points = export_stop_points()
     listings = build_listing_artifacts()
-    (SITE_DIR / "all-points.html").write_text(HTML)
     print(f"Wrote {STOPS_OUT}")
     print(f"Wrote {LISTINGS_JSON_OUT}")
-    print(f"Wrote {SITE_DIR / 'all-points.html'}")
+    print(f"Preserved {SITE_DIR / 'all-points.html'}")
     print(f"Stop points: {len(points)}")
     print(f"Listings DB rows: {len(listings)}")
 

@@ -1,8 +1,58 @@
 [
   {
-    "title": "Linnéavägen 5",
-    "location": "Hallstavik, Norrtälje kommun",
-    "listing_url": "https://www.hemnet.se/bostad/villa-5rum-centrala-hallstavik-norrtalje-kommun-linneavagen-5-21572135#kalkyler"
+    "title": "Borgågatan 12, 1 tr |",
+    "location": "Akalla, Stockholms kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-akalla-stockholms-kommun-borgagatan-12,-1-tr-21633861"
+  },
+  {
+    "title": "Sibeliusgången 46, 8 tr |",
+    "location": "Akalla, Stockholms kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-akalla-stockholms-kommun-sibeliusgangen-46,-8-tr-21673202"
+  },
+  {
+    "title": "Holmvägen 2 vån 7 av 8 |",
+    "location": "Apoteksskogen, Upplands Väsby kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-apoteksskogen-upplands-vasby-kommun-holmvagen-2-van-7-av-8-21684455"
+  },
+  {
+    "title": "Bodatorpsvägen 14 |",
+    "location": "Bodatorp, Värmdö kommun",
+    "listing_url": "https://www.hemnet.se/bostad/fritidsboende-6rum-bodatorp-varmdo-kommun-bodatorpsvagen-14-21697665"
+  },
+  {
+    "title": "Dagsverkarvägen 9",
+    "location": "Bro/Österhagen, Upplands-Bro kommun",
+    "listing_url": "https://www.hemnet.se/bostad/villa-6rum-bro-osterhagen-upplands-bro-kommun-dagsverkarvagen-9-21514635"
+  },
+  {
+    "title": "Trombonstigen 6, nb |",
+    "location": "Brunna - Kungsängen, Upplands-Bro kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-brunna-kungsangen-upplands-bro-kommun-trombonstigen-6,-nb-21671966"
+  },
+  {
+    "title": "Fidravägen 35 |",
+    "location": "Fiskarhöjden - Saltsjöbaden, Nacka kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-fiskarhojden-saltsjobaden-nacka-kommun-fidravagen-35-21549356"
+  },
+  {
+    "title": "Terapivägen 10E |",
+    "location": "Flemingsberg, Huddinge kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-flemingsberg-huddinge-kommun-terapivagen-10e-21707329"
+  },
+  {
+    "title": "Terapivägen 12B |",
+    "location": "Flemingsberg, Huddinge kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-flemingsberg-huddinge-kommun-terapivagen-12b-21637505"
+  },
+  {
+    "title": "Björnmossevägen 60 |",
+    "location": "Garns-ekskogen/brottby, Vallentuna kommun",
+    "listing_url": "https://www.hemnet.se/bostad/villa-4rum-garns-ekskogen-brottby-vallentuna-kommun-bjornmossevagen-60-21681831"
+  },
+  {
+    "title": "Kaggvägen 3 |",
+    "location": "Grödinge, Botkyrka kommun",
+    "listing_url": "https://www.hemnet.se/bostad/villa-4rum-grodinge-botkyrka-kommun-kaggvagen-3-21707323"
   },
   {
     "title": "Gamlebovägen 5B",
@@ -10,8 +60,168 @@
     "listing_url": "https://www.hemnet.se/bostad/lagenhet-2rum-hallstavik-norrtalje-kommun-gamlebovagen-5b-21055535"
   },
   {
-    "title": "Dagsverkarvägen 9",
-    "location": "Bro/Österhagen, Upplands-Bro kommun",
-    "listing_url": "https://www.hemnet.se/bostad/villa-6rum-bro-osterhagen-upplands-bro-kommun-dagsverkarvagen-9-21514635"
+    "title": "Hallstavik villa",
+    "location": "Hallstavik, Norrtälje kommun",
+    "listing_url": "https://www.hemnet.se/bostad/villa-8rum-hallstavik-norrtalje-kommun-carl-wahrens-vag-8-21672371"
+  },
+  {
+    "title": "Linnéavägen 5",
+    "location": "Hallstavik, Norrtälje kommun",
+    "listing_url": "https://www.hemnet.se/bostad/villa-5rum-centrala-hallstavik-norrtalje-kommun-linneavagen-5-21572135#kalkyler"
+  },
+  {
+    "title": "Aprikosgatan 33, 5tr |",
+    "location": "Hässelby Strand, Stockholms kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-hasselby-strand-stockholms-kommun-aprikosgatan-33,-5tr-21595534"
+  },
+  {
+    "title": "Maltesholmsvägen 154, 3 tr |",
+    "location": "Hässelby Strand, Stockholms kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-hasselby-strand-stockholms-kommun-maltesholmsvagen-154,-3-tr-21706995"
+  },
+  {
+    "title": "Kvarnplan 1, Vån 8/8 |",
+    "location": "Jakobsberg, Järfälla kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-jakobsberg-jarfalla-kommun-kvarnplan-1,-van-8-8-21584988"
+  },
+  {
+    "title": "SVETSARVÄGEN 21 |",
+    "location": "Kallhäll, Järfälla kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-kallhall-jarfalla-kommun-svetsarvagen-21-21652262"
+  },
+  {
+    "title": "Langelandsgatan 27 |",
+    "location": "Kista, Stockholms kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-kista-stockholms-kommun-langelandsgatan-27-21597960"
+  },
+  {
+    "title": "Ringvägen 16 |",
+    "location": "Kungsängen/Centrum, Upplands-Bro kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-kungsangen-centrum-upplands-bro-kommun-ringvagen-16-21701199"
+  },
+  {
+    "title": "Lövsättravägen 11 |",
+    "location": "Lövsättra, Vallentuna kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-lovsattra-vallentuna-kommun-lovsattravagen-11-21649317"
+  },
+  {
+    "title": "Stockholmsvägen 28A |",
+    "location": "Märsta, Sigtuna kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-sigtuna-kommun-stockholmsvagen-28a-21700961"
+  },
+  {
+    "title": "Norrbodavägen 7, vån 2 |",
+    "location": "Norrboda - Kungsängen, Upplands-Bro kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-norrboda-kungsangen-upplands-bro-kommun-norrbodavagen-7,-van-2-21688349"
+  },
+  {
+    "title": "Skarpbrunnavägen 131 |",
+    "location": "Norsborg, Botkyrka kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-botkyrka-kommun-skarpbrunnavagen-131-21596795"
+  },
+  {
+    "title": "Tolanvägen 56 |",
+    "location": "Odenslunda, Upplands Väsby kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-odenslunda-upplands-vasby-kommun-tolanvagen-56-21522695"
+  },
+  {
+    "title": "Björnclous Väg 46 |",
+    "location": "Ösmo, Nynäshamns kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-osmo-nynashamns-kommun-bjornclous-vag-46-21703165"
+  },
+  {
+    "title": "Emanuel Birkes väg 8D |",
+    "location": "Rönninge, Salems kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-salems-kommun-emanuel-birkes-vag-8d-21707306"
+  },
+  {
+    "title": "Nyborgsvägen 11 |",
+    "location": "Rosersberg, Sigtuna kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-rosersberg-sigtuna-kommun-nyborgsvagen-11-21674477"
+  },
+  {
+    "title": "Bromsbodavägen 59 |",
+    "location": "Runby, Upplands Väsby kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-runby-upplands-vasby-kommun-bromsbodavagen-59-21682961"
+  },
+  {
+    "title": "Lövstavägen 65 |",
+    "location": "Runby, Upplands Väsby kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-runby-upplands-vasby-kommun-lovstavagen-65-21664608"
+  },
+  {
+    "title": "Bondestigen 15 |",
+    "location": "Salem, Salems kommun",
+    "listing_url": "https://www.hemnet.se/bostad/radhus-4rum-salem-salems-kommun-bondestigen-15-21484035"
+  },
+  {
+    "title": "Jägarstigen 41 |",
+    "location": "Salem, Salems kommun",
+    "listing_url": "https://www.hemnet.se/bostad/radhus-4rum-salem-salems-kommun-jagarstigen-41-21639879"
+  },
+  {
+    "title": "Säbytorgsvägen 8B |",
+    "location": "Salem, Salems kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-salem-salems-kommun-sabytorgsvagen-8b-21608951"
+  },
+  {
+    "title": "Aktervägen 55 |",
+    "location": "Sandhamn, Nynäshamns kommun",
+    "listing_url": "https://www.hemnet.se/bostad/radhus-4rum-sandhamn-nynashamns-kommun-aktervagen-55-21704974"
+  },
+  {
+    "title": "Övre Villagatan 48 |",
+    "location": "Södertälje, Södertälje kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-sodertalje-sodertalje-kommun-ovre-villagatan-48-21584143"
+  },
+  {
+    "title": "Rissnavägen 45, 3 tr |",
+    "location": "Spånga - Bromsten, Stockholms kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-spanga-bromsten-stockholms-kommun-rissnavagen-45,-3-tr-21705705"
+  },
+  {
+    "title": "Svinningegränd 19 |",
+    "location": "Spånga Kyrka, Stockholms kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-spanga-kyrka-stockholms-kommun-svinningegrand-19-21628296"
+  },
+  {
+    "title": "BÄRKINGEPLAN 17 |",
+    "location": "Spånga - Tensta, Stockholms kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-spanga-tensta-stockholms-kommun-barkingeplan-17-21692058"
+  },
+  {
+    "title": "Vissingebacken 9, 1 tr |",
+    "location": "Spånga - Tensta, Stockholms kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-spanga-tensta-stockholms-kommun-vissingebacken-9,-1-tr-21690062"
+  },
+  {
+    "title": "Mariebergsvägen 9 |",
+    "location": "Stora Vika, Nynäshamns kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-stora-vika-nynashamns-kommun-mariebergsvagen-9-21550605"
+  },
+  {
+    "title": "Skäftingebacken 8, 5tr |",
+    "location": "Tensta, Stockholms kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-tensta-stockholms-kommun-skaftingebacken-8,-5tr-21684717"
+  },
+  {
+    "title": "Fornminnesvägen 34 |",
+    "location": "Vallentuna Centrum, Vallentuna kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-vallentuna-centrum-vallentuna-kommun-fornminnesvagen-34-21688171"
+  },
+  {
+    "title": "Ringvägen 57, 1 tr |",
+    "location": "Västerhaninge, Haninge kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-vasterhaninge-haninge-kommun-ringvagen-57,-1-tr-21668243"
+  },
+  {
+    "title": "Axvägen 15, 1tr |",
+    "location": "Viksjö, Järfälla kommun",
+    "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-viksjo-jarfalla-kommun-axvagen-15,-1tr-21699254"
+  },
+  {
+    "title": "Hasselviksvägen 8 |",
+    "location": "Vindö - Överby, Värmdö kommun",
+    "listing_url": "https://www.hemnet.se/bostad/villa-4rum-vindo-overby-varmdo-kommun-hasselviksvagen-8-21702993"
   }
 ]

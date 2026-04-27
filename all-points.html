@@ -203,7 +203,7 @@
 
     function linkLine(label, href) {
       if (!href) return '';
-      return `<br><a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+      return `<br><a href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
     }
 
     function popupHtmlListing(item) {
@@ -328,8 +328,46 @@
     }
 
     document.getElementById('reset').addEventListener('click', resetView);
-    document.getElementById('scanButton').addEventListener('click', () => {
-      window.open('https://github.com/simonjearsey/sl-local-maps/actions', '_blank', 'noopener,noreferrer');
+    document.getElementById('scanButton').addEventListener('click', async () => {
+      const button = document.getElementById('scanButton');
+      const lastCrawl = document.getElementById('lastCrawl');
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = 'Scanning…';
+      lastCrawl.textContent = 'Last crawl: scanning Hemnet search pages…';
+      try {
+        const payload = {
+          listings: state.listings.map((item) => ({
+            source: item.source,
+            source_id: item.source_id,
+            title: item.title,
+            location: item.location,
+            listing_url: item.listing_url,
+          })),
+        };
+        const response = await fetch('/api/update-listings', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || `HTTP ${response.status}`);
+        const bySourceId = new Map((result.matches || []).map((match) => [match.source_id, match]));
+        let updated = 0;
+        state.listings = state.listings.map((item) => {
+          const match = bySourceId.get(item.source_id);
+          if (!match || !match.listing_url) return item;
+          updated += 1;
+          return { ...item, listing_url: match.listing_url };
+        });
+        render();
+        lastCrawl.textContent = `Last crawl: ${formatPublishedAt(result.fetched_at)} · ${updated} listing links updated from ${result.searched_urls || 0} source URLs`;
+      } catch (error) {
+        lastCrawl.textContent = `Last crawl failed: ${error.message}`;
+      } finally {
+        button.disabled = false;
+        button.textContent = originalText;
+      }
     });
     
     // Added debounce for better performance

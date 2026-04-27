@@ -1,9 +1,9 @@
 {
-  "version": "v0.0.15",
-  "release_number": 15,
-  "published_at": "2026-04-27T09:06:08+02:00",
-  "published_at_utc": "2026-04-27T07:06:08Z",
+  "version": "v0.0.16",
+  "release_number": 16,
+  "published_at": "2026-04-27T09:13:10+02:00",
+  "published_at_utc": "2026-04-27T07:13:10Z",
   "timezone": "Europe/Stockholm",
-  "source_commit_before_release": "fba99f5",
+  "source_commit_before_release": "74bd4fb",
   "source_branch": "main"
 }
