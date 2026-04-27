@@ -6,6 +6,10 @@ loaded page contains normalized Apollo listing objects. This collector launches 
 separate Chrome profile with remote debugging, navigates search result pages, and
 extracts Listing/Project entities from __NEXT_DATA__.
 """
+# NOTE: This Chrome/NextData collector is an expensive fallback/debug tool only.
+# Samuel explicitly asked not to use it for broad Booli refreshes. Prefer direct
+# https://www.booli.se/graphql pagination, and if that efficient method breaks,
+# flag loudly instead of silently falling back to this scrape path.
 from __future__ import annotations
 
 import argparse

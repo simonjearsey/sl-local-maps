@@ -2,14 +2,24 @@
   "items": [
     {
       "source": "booli",
-      "url": "https://www.booli.se/sok/till-salu?areaIds=33&maxListPrice=3000000&minRooms=4",
-      "parameters": "areaIds: 33; price_max: 3000000; rooms_min: 4"
+      "url": "https://www.booli.se/sok/till-salu?areaIds=2%2C118%2C26&maxListPrice=3000000&minRooms=4",
+      "parameters": "areaIds: 2,118,26; price_max: 3000000; rooms_min: 4",
+      "elapsed_seconds": 52.906,
+      "pages_seen": 76,
+      "raw_items_seen": 2652,
+      "max_sl_stop_distance_m": 500,
+      "captured_items": 1249
     },
     {
       "source": "hemnet",
-      "url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4",
-      "parameters": "location_ids: 17744; price_max: 3000000; rooms_min: 4"
+      "url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "parameters": "location_ids: 17744, 17745, 17746; price_max: 3000000; rooms_min: 4",
+      "elapsed_seconds": 36.503,
+      "pages_seen": 30,
+      "raw_items_seen": 1470,
+      "max_sl_stop_distance_m": 500,
+      "captured_items": 696
     }
   ],
-  "note": "These are the source search URLs/filters used by the currently published local listing dataset."
+  "note": "These source searches cover Stockholm, Uppsala, and Södermanland county-level pages, then the local build keeps listings whose coordinates are within 500m of an SL stop point."
 }

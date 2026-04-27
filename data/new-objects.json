@@ -1,8 +1,268 @@
 {
-  "count": 5,
+  "count": 94,
   "items": [
     {
-      "title": "Birdie |",
+      "title": "Begoniaslingan 56 C",
+      "location": "Bro - Rosenängarna, Upplands-Bro kommun",
+      "price": "2 995 000 kr",
+      "rooms": "4 rum",
+      "size": "92+7 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/radhus-4rum-bro-rosenangarna-upplands-bro-kommun-begoniaslingan-56-c-21671523",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/radhus-4rum-bro-rosenangarna-upplands-bro-kommun-begoniaslingan-56-c-21671523"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Bro - Rosenängarna, Upplands-Bro kommun"
+    },
+    {
+      "title": "Begoniaslingan 58 A",
+      "location": "Bro - Rosenängarna, Upplands-Bro kommun",
+      "price": "2 995 000 kr",
+      "rooms": "4 rum",
+      "size": "92+7 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/radhus-4rum-bro-rosenangarna-upplands-bro-kommun-begoniaslingan-58-a-21671521",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/radhus-4rum-bro-rosenangarna-upplands-bro-kommun-begoniaslingan-58-a-21671521"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Bro - Rosenängarna, Upplands-Bro kommun"
+    },
+    {
+      "title": "Brf Solängen",
+      "location": "Bro - Rosenängarna, Upplands-Bro kommun",
+      "price": "fr. 2 995 000 kr",
+      "rooms": "4 rum",
+      "size": "92 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/bro-rosenangarna-brf-solangen-21443945",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/bro-rosenangarna-brf-solangen-21443945"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Bro - Rosenängarna, Upplands-Bro kommun"
+    },
+    {
+      "title": "Mejerskans väg 4C",
+      "location": "Bro Mälarstad, Upplands-Bro kommun",
+      "price": "2 895 000 kr",
+      "rooms": "5 rum",
+      "size": "107+2,1 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/radhus-5rum-bro-malarstad-upplands-bro-kommun-mejerskans-vag-4c-21428695",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/radhus-5rum-bro-malarstad-upplands-bro-kommun-mejerskans-vag-4c-21428695"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Bro Mälarstad, Upplands-Bro kommun"
+    },
+    {
+      "title": "Brf Odlingslunden",
+      "location": "Bro Trädgårdsstad , Upplands-Bro kommun",
+      "price": "fr. 995 000 kr",
+      "rooms": "1-4 rum",
+      "size": "24-87 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/bro-tradgardsstad-brf-odlingslunden-19267318",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/bro-tradgardsstad-brf-odlingslunden-19267318"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Bro Trädgårdsstad , Upplands-Bro kommun"
+    },
+    {
+      "title": "Sigrids väg 27",
+      "location": "Bro Trädgårdsstad , Upplands-Bro kommun",
+      "price": "2 375 000 kr",
+      "rooms": "4 rum",
+      "size": "85 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-bro-tradgardsstad-upplands-bro-kommun-sigrids-vag-27-21348477",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/lagenhet-4rum-bro-tradgardsstad-upplands-bro-kommun-sigrids-vag-27-21348477"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Bro Trädgårdsstad , Upplands-Bro kommun"
+    },
+    {
+      "title": "MEJERSKAN",
+      "location": "Bro, Upplands-Bro kommun",
+      "price": "fr. 2 895 000 kr",
+      "rooms": "5 rum",
+      "size": "107 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/mejerskan-21428656",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/mejerskan-21428656"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Bro, Upplands-Bro kommun"
+    },
+    {
+      "title": "Folkrätt förvärvar Brf Snytan och erbjuder en prisvärd bostad i centrala Bålsta.",
+      "location": "Bålsta, Håbo kommun",
+      "price": "fr. 676 796 kr",
+      "rooms": "2-4 rum",
+      "size": "40-135 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/balsta-folkratt-forvarvar-brf-snytan-och-erbjuder-en-prisvard-bostad-i-centrala-balsta,-21701914",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/balsta-folkratt-forvarvar-brf-snytan-och-erbjuder-en-prisvard-bostad-i-centrala-balsta,-21701914"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Bålsta, Håbo kommun"
+    },
+    {
+      "title": "Brf Stationshusen",
+      "location": "Centrala Märsta, Sigtuna kommun",
+      "price": "fr. 1 695 000 kr",
+      "rooms": "1-4 rum",
+      "size": "35-90 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/centrala-marsta-brf-stationshusen-21569888",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/centrala-marsta-brf-stationshusen-21569888"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Centrala Märsta, Sigtuna kommun"
+    },
+    {
+      "title": "Ture Entré",
+      "location": "Centrala Sollentuna, Sollentuna kommun",
+      "price": "fr. 1 990 000 kr",
+      "rooms": "1-4 rum",
+      "size": "41-98 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/centrala-sollentuna-ture-entre-21322821",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/centrala-sollentuna-ture-entre-21322821"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Centrala Sollentuna, Sollentuna kommun"
+    },
+    {
+      "title": "Ture Gård",
+      "location": "Centrala Sollentuna, Sollentuna kommun",
+      "price": "fr. 1 690 000 kr",
+      "rooms": "1-4 rum",
+      "size": "27-102 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/centrala-sollentuna-ture-gard-21434423",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/centrala-sollentuna-ture-gard-21434423"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Centrala Sollentuna, Sollentuna kommun"
+    },
+    {
+      "title": "Ture Gård 2",
+      "location": "Centrala Sollentuna, Sollentuna kommun",
+      "price": "fr. 1 740 000 kr",
+      "rooms": "1-5 rum",
+      "size": "35-123 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/centrala-sollentuna-ture-gard-2-21567725",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/centrala-sollentuna-ture-gard-2-21567725"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Centrala Sollentuna, Sollentuna kommun"
+    },
+    {
+      "title": "Ture Torn",
+      "location": "Centrala Sollentuna, Sollentuna kommun",
+      "price": "fr. 3 040 000 kr",
+      "rooms": "2-4 rum",
+      "size": "55-94 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/centrala-sollentuna-ture-torn-19801076",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/centrala-sollentuna-ture-torn-19801076"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Centrala Sollentuna, Sollentuna kommun"
+    },
+    {
+      "title": "Birdie",
       "location": "Centrala Tyresö, Tyresö kommun",
       "price": "fr. 2 795 000 kr",
       "rooms": "2-5 rum",
@@ -11,16 +271,158 @@
       "sources": [
         "hemnet"
       ],
-      "listing_url": null,
-      "listing_urls": [],
-      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4",
-      "source_urls": [
-        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4"
+      "listing_url": "https://www.hemnet.se/bostad/centrala-tyreso-birdie-21456856",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/centrala-tyreso-birdie-21456856"
       ],
-      "matched_name": "Tyresö"
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Centrala Tyresö, Tyresö kommun"
     },
     {
-      "title": "Utblicken |",
+      "title": "Norrberget Höjden",
+      "location": "Centrala Vaxholm, Vaxholms kommun",
+      "price": "fr. 1 995 000 kr",
+      "rooms": "1-6 rum",
+      "size": "33-164 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/centrala-vaxholm-norrberget-hojden-21678071",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/centrala-vaxholm-norrberget-hojden-21678071"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Centrala Vaxholm, Vaxholms kommun"
+    },
+    {
+      "title": "Sjöhusen i Klockelund",
+      "location": "Farsta, Stockholms kommun",
+      "price": "fr. 2 550 000 kr",
+      "rooms": "2-5 rum",
+      "size": "45-140 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/farsta-sjohusen-i-klockelund-17591705",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/farsta-sjohusen-i-klockelund-17591705"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Farsta, Stockholms kommun"
+    },
+    {
+      "title": "Fisksätravägen 28A, lgh 11602",
+      "location": "Fisksätra, Nacka kommun",
+      "price": "2 995 000 kr",
+      "rooms": "4 rum",
+      "size": "77 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-fisksatra-nacka-kommun-fisksatravagen-28a,-lgh-11602-21681821",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/lagenhet-4rum-fisksatra-nacka-kommun-fisksatravagen-28a,-lgh-11602-21681821"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Fisksätra, Nacka kommun"
+    },
+    {
+      "title": "Brf Gillbo Park i Rotebro",
+      "location": "Gillbo, Sollentuna kommun",
+      "price": "fr. 1 990 000 kr",
+      "rooms": "1-5 rum",
+      "size": "40-121 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/gillbo-brf-gillbo-park-i-rotebro-21499874",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/gillbo-brf-gillbo-park-i-rotebro-21499874"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Gillbo, Sollentuna kommun"
+    },
+    {
+      "title": "Trästa broväg 124",
+      "location": "Grisslehamn, Norrtälje kommun",
+      "price": "2 995 000 kr",
+      "rooms": "4 rum",
+      "size": "84 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/villa-4rum-grisslehamn-norrtalje-kommun-trasta-brovag-124-21671070",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/villa-4rum-grisslehamn-norrtalje-kommun-trasta-brovag-124-21671070"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Grisslehamn, Norrtälje kommun"
+    },
+    {
+      "title": "Brf Smycka Porslinsfabriken",
+      "location": "Gustavsberg, Porslinskvarteren, Värmdö kommun",
+      "price": "fr. 1 960 000 kr",
+      "rooms": "1-4 rum",
+      "size": "34-97 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/gustavsberg,-porslinskvarteren-brf-smycka-porslinsfabriken-17953588",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/gustavsberg,-porslinskvarteren-brf-smycka-porslinsfabriken-17953588"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Gustavsberg, Porslinskvarteren, Värmdö kommun"
+    },
+    {
+      "title": "Brf Vegalund",
+      "location": "Handen, Haninge kommun",
+      "price": "fr. 1 995 000 kr",
+      "rooms": "1-7 rum",
+      "size": "24-150 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/brf-vegalund-21659424",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/brf-vegalund-21659424"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Handen, Haninge kommun"
+    },
+    {
+      "title": "Utblicken",
       "location": "Huvudsta Strandpark, Solna kommun",
       "price": "fr. 2 290 000 kr",
       "rooms": "1-6 rum",
@@ -29,16 +431,38 @@
       "sources": [
         "hemnet"
       ],
-      "listing_url": null,
-      "listing_urls": [],
-      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4",
-      "source_urls": [
-        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4"
+      "listing_url": "https://www.hemnet.se/bostad/huvudsta-strandpark-utblicken-21364619",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/huvudsta-strandpark-utblicken-21364619"
       ],
-      "matched_name": "Huvudsta"
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Huvudsta Strandpark, Solna kommun"
     },
     {
-      "title": "Fredman i Hägersten |",
+      "title": "Vyn",
+      "location": "Huvudsta Strandpark, Solna kommun",
+      "price": "fr. 2 590 000 kr",
+      "rooms": "1-4 rum",
+      "size": "31-104 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/huvudsta-strandpark-vyn-21692892",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/huvudsta-strandpark-vyn-21692892"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Huvudsta Strandpark, Solna kommun"
+    },
+    {
+      "title": "Fredman i Hägersten",
       "location": "Hägersten, Stockholms kommun",
       "price": "fr. 1 895 000 kr",
       "rooms": "1-4 rum",
@@ -47,34 +471,1398 @@
       "sources": [
         "hemnet"
       ],
-      "listing_url": null,
-      "listing_urls": [],
-      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4",
-      "source_urls": [
-        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4"
+      "listing_url": "https://www.hemnet.se/bostad/hagersten-fredman-i-hagersten-21546065",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/hagersten-fredman-i-hagersten-21546065"
       ],
-      "matched_name": "Hägerstensåsen"
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Hägersten, Stockholms kommun"
     },
     {
-      "title": "Näsby Dunge |",
-      "location": "Roslags-Näsby, Täby kommun",
-      "price": "fr. 1 695 000 kr",
-      "rooms": "1-5 rum",
-      "size": "30-110 m²",
+      "title": "Barkarby Pluss - hotellkänsla, hemma!",
+      "location": "Järfälla, Järfälla kommun",
+      "price": "fr. 1 775 000 kr",
+      "rooms": "1-4 rum",
+      "size": "30-88 m²",
       "source": "hemnet",
       "sources": [
         "hemnet"
       ],
-      "listing_url": null,
-      "listing_urls": [],
-      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4",
-      "source_urls": [
-        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4"
+      "listing_url": "https://www.hemnet.se/bostad/barkarby-pluss-hotellkansla,-hemma-21662941",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/barkarby-pluss-hotellkansla,-hemma-21662941"
       ],
-      "matched_name": "Roslags Näsby"
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Järfälla, Järfälla kommun"
     },
     {
-      "title": "Vide |",
+      "title": "BoKlok Golfklubban",
+      "location": "Järna, Södertälje kommun",
+      "price": "fr. 2 095 000 kr",
+      "rooms": "3-4 rum",
+      "size": "72-85 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/jarna-boklok-golfklubban-18929960",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/jarna-boklok-golfklubban-18929960"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Järna, Södertälje kommun"
+    },
+    {
+      "title": "Östra Kallforsvägen 6 1101",
+      "location": "Järna, Södertälje kommun",
+      "price": "2 595 000 kr",
+      "rooms": "4 rum",
+      "size": "82 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-jarna-sodertalje-kommun-ostra-kallforsvagen-6-1101-19015775",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/lagenhet-4rum-jarna-sodertalje-kommun-ostra-kallforsvagen-6-1101-19015775"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Järna, Södertälje kommun"
+    },
+    {
+      "title": "Östra Kallforsvägen 6 1201",
+      "location": "Järna, Södertälje kommun",
+      "price": "2 695 000 kr",
+      "rooms": "4 rum",
+      "size": "85 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-jarna-sodertalje-kommun-ostra-kallforsvagen-6-1201-19107077",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/lagenhet-4rum-jarna-sodertalje-kommun-ostra-kallforsvagen-6-1201-19107077"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Järna, Södertälje kommun"
+    },
+    {
+      "title": "Kattfoten",
+      "location": "Järvastaden, Solna kommun",
+      "price": "fr. 1 990 000 kr",
+      "rooms": "1-6 rum",
+      "size": "34-118 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/jarvastaden-kattfoten-21617747",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/jarvastaden-kattfoten-21617747"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Järvastaden, Solna kommun"
+    },
+    {
+      "title": "Kungsliljan",
+      "location": "Järvastaden, Solna kommun",
+      "price": "fr. 1 990 000 kr",
+      "rooms": "1-6 rum",
+      "size": "30-115 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/jarvastaden-kungsliljan-21300036",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/jarvastaden-kungsliljan-21300036"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Järvastaden, Solna kommun"
+    },
+    {
+      "title": "Ängsklockan",
+      "location": "Järvastaden, Solna kommun",
+      "price": "fr. 1 995 000 kr",
+      "rooms": "1-5 rum",
+      "size": "34-122 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/jarvastaden-angsklockan-21623716",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/jarvastaden-angsklockan-21623716"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Järvastaden, Solna kommun"
+    },
+    {
+      "title": "Borgarfjordsgatan 3",
+      "location": "Kista Äng, Stockholms kommun",
+      "price": "1 065 625 kr",
+      "rooms": "4 rum",
+      "size": "75,5 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-kista-ang-stockholms-kommun-borgarfjordsgatan-3-21664214",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/lagenhet-4rum-kista-ang-stockholms-kommun-borgarfjordsgatan-3-21664214"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Kista Äng, Stockholms kommun"
+    },
+    {
+      "title": "Borgarfjordsgatan 3",
+      "location": "Kista, Stockholms kommun",
+      "price": "1 498 750 kr",
+      "rooms": "4 rum",
+      "size": "107 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-stockholms-kommun-borgarfjordsgatan-3-21664212",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/lagenhet-4rum-stockholms-kommun-borgarfjordsgatan-3-21664212"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Kista, Stockholms kommun"
+    },
+    {
+      "title": "Låg insats - Långsiktig trygghet",
+      "location": "Kista, Stockholms kommun",
+      "price": "fr. 561 000 kr",
+      "rooms": "1-4 rum",
+      "size": "32-107 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/kista-lag-insats-langsiktig-trygghet-21661564",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/kista-lag-insats-langsiktig-trygghet-21661564"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Kista, Stockholms kommun"
+    },
+    {
+      "title": "Närheten 2",
+      "location": "Kungsängen, Industristaden, Uppsala kommun",
+      "price": "fr. 1 895 000 kr",
+      "rooms": "1-5 rum",
+      "size": "32-122 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/kungsangen,-industristaden-narheten-2-21493681",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/kungsangen,-industristaden-narheten-2-21493681"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Kungsängen, Industristaden, Uppsala kommun"
+    },
+    {
+      "title": "Brf Skeppa",
+      "location": "Kungsängen, Skeppskajen, Uppsala kommun",
+      "price": "fr. 1 895 000 kr",
+      "rooms": "1-5 rum",
+      "size": "34-117 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/kungsangen,-skeppskajen-brf-skeppa-21609070",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/kungsangen,-skeppskajen-brf-skeppa-21609070"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Kungsängen, Skeppskajen, Uppsala kommun"
+    },
+    {
+      "title": "Närheten",
+      "location": "Kungsängen, Uppsala kommun",
+      "price": "fr. 1 895 000 kr",
+      "rooms": "1-4 rum",
+      "size": "32-98 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/kungsangen-narheten-21489407",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/kungsangen-narheten-21489407"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Kungsängen, Uppsala kommun"
+    },
+    {
+      "title": "Bromma Canvas, Mariehäll",
+      "location": "Mariehäll, Bromma, Stockholms kommun",
+      "price": "fr. 1 995 000 kr",
+      "rooms": "1-5 rum",
+      "size": "28-125 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/mariehall,-bromma-bromma-canvas,-mariehall-21644214",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/mariehall,-bromma-bromma-canvas,-mariehall-21644214"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Mariehäll, Bromma, Stockholms kommun"
+    },
+    {
+      "title": "Rex",
+      "location": "Marieviks Udde, Stockholms kommun",
+      "price": "fr. 2 890 000 kr",
+      "rooms": "1-5 rum",
+      "size": "34-110 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/marieviks-udde-rex-21588737",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/marieviks-udde-rex-21588737"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Marieviks Udde, Stockholms kommun"
+    },
+    {
+      "title": "Berghusen",
+      "location": "Mälarhöjden, Stockholms kommun",
+      "price": "fr. 2 195 000 kr",
+      "rooms": "2-5 rum",
+      "size": "35-122 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/malarhojden-berghusen-21665072",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/malarhojden-berghusen-21665072"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Mälarhöjden, Stockholms kommun"
+    },
+    {
+      "title": "BRF Slottsvallen",
+      "location": "Märsta, Sigtuna kommun",
+      "price": "fr. 2 995 000 kr",
+      "rooms": "4-5 rum",
+      "size": "108-126 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/brf-slottsvallen-21362152",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/brf-slottsvallen-21362152"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Märsta, Sigtuna kommun"
+    },
+    {
+      "title": "Terrasshusen",
+      "location": "Norra Djurgårdsstaden, Stockholms kommun",
+      "price": "fr. 3 045 000 kr",
+      "rooms": "1-5 rum",
+      "size": "33-114 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/norra-djurgardsstaden-terrasshusen-21667423",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/norra-djurgardsstaden-terrasshusen-21667423"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Norra Djurgårdsstaden, Stockholms kommun"
+    },
+    {
+      "title": "Agora",
+      "location": "Norrtälje Hamn, Norrtälje kommun",
+      "price": "fr. 2 395 000 kr",
+      "rooms": "2-4 rum",
+      "size": "59-151 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/norrtalje-hamn-agora-21572370",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/norrtalje-hamn-agora-21572370"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Norrtälje Hamn, Norrtälje kommun"
+    },
+    {
+      "title": "Bonum Brf Havslängtan",
+      "location": "Norrtälje Hamn, Norrtälje kommun",
+      "price": "fr. 1 785 000 kr",
+      "rooms": "2-4 rum",
+      "size": "50-98 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/norrtalje-hamn-bonum-brf-havslangtan-18686200",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/norrtalje-hamn-bonum-brf-havslangtan-18686200"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Norrtälje Hamn, Norrtälje kommun"
+    },
+    {
+      "title": "Brf Havsbrisen",
+      "location": "Norrtälje Hamn, Norrtälje kommun",
+      "price": "fr. 1 450 000 kr",
+      "rooms": "1-4 rum",
+      "size": "34-105 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/norrtalje-hamn-brf-havsbrisen-20754276",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/norrtalje-hamn-brf-havsbrisen-20754276"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Norrtälje Hamn, Norrtälje kommun"
+    },
+    {
+      "title": "Brf Nynässagan - Sandhamn - Inflyttningsklart!",
+      "location": "Nynäshamn, Nynäshamns kommun",
+      "price": "fr. 2 995 000 kr",
+      "rooms": "5 rum",
+      "size": "110 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/brf-nynassagan-sandhamn-inflyttningsklart-21641953",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/brf-nynassagan-sandhamn-inflyttningsklart-21641953"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Nynäshamn, Nynäshamns kommun"
+    },
+    {
+      "title": "Panorama Nynäshamn",
+      "location": "Nynäshamn, Nynäshamns kommun",
+      "price": "fr. 1 625 000 kr",
+      "rooms": "2-4 rum",
+      "size": "35-80 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/panorama-nynashamn-19703875",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/panorama-nynashamn-19703875"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Nynäshamn, Nynäshamns kommun"
+    },
+    {
+      "title": "Panorama Älgen 20",
+      "location": "Nynäshamn, Nynäshamns kommun",
+      "price": "fr. 1 550 000 kr",
+      "rooms": "2-5 rum",
+      "size": "35-131 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/panorama-algen-20-20076438",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/panorama-algen-20-20076438"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Nynäshamn, Nynäshamns kommun"
+    },
+    {
+      "title": "Näsby Dunge",
+      "location": "Roslags-Näsby, Täby kommun",
+      "price": "fr. 1 695 000 kr",
+      "rooms": "1-5 rum",
+      "size": "30-108 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/roslags-nasby-nasby-dunge-6960256",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/roslags-nasby-nasby-dunge-6960256"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Roslags-Näsby, Täby kommun"
+    },
+    {
+      "title": "Baggensfjärdshöjden",
+      "location": "Saltsjö-Boo, Nacka kommun",
+      "price": "fr. 2 999 900 kr",
+      "rooms": "3-6 rum",
+      "size": "24-191 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/baggensfjardshojden-21662077",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/baggensfjardshojden-21662077"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Saltsjö-Boo, Nacka kommun"
+    },
+    {
+      "title": "Brf Garden House",
+      "location": "Saltsjö-Boo, Nacka kommun",
+      "price": "fr. 1 995 000 kr",
+      "rooms": "2-5 rum",
+      "size": "25-117 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/brf-garden-house-21417632",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/brf-garden-house-21417632"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Saltsjö-Boo, Nacka kommun"
+    },
+    {
+      "title": "Havrepiren",
+      "location": "Skeppskajen/Kungsängen, Uppsala kommun",
+      "price": "fr. 2 495 000 kr",
+      "rooms": "1-4 rum",
+      "size": "27-87 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/skeppskajen-kungsangen-havrepiren-21562541",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/skeppskajen-kungsangen-havrepiren-21562541"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Skeppskajen/Kungsängen, Uppsala kommun"
+    },
+    {
+      "title": "Kornbryggan",
+      "location": "Skeppskajen/Kungsängen, Uppsala kommun",
+      "price": "fr. 2 595 000 kr",
+      "rooms": "2-4 rum",
+      "size": "46-120 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/skeppskajen-kungsangen-kornbryggan-21558288",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/skeppskajen-kungsangen-kornbryggan-21558288"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Skeppskajen/Kungsängen, Uppsala kommun"
+    },
+    {
+      "title": "Rågslussen",
+      "location": "Skeppskajen/Kungsängen, Uppsala kommun",
+      "price": "fr. 1 745 000 kr",
+      "rooms": "1-6 rum",
+      "size": "26-151 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/skeppskajen-kungsangen-ragslussen-21481358",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/skeppskajen-kungsangen-ragslussen-21481358"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Skeppskajen/Kungsängen, Uppsala kommun"
+    },
+    {
+      "title": "Vetekvarnen",
+      "location": "Skeppskajen/Kungsängen, Uppsala kommun",
+      "price": "fr. 2 245 000 kr",
+      "rooms": "1-5 rum",
+      "size": "28-141 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/skeppskajen-kungsangen-vetekvarnen-21703844",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/skeppskajen-kungsangen-vetekvarnen-21703844"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Skeppskajen/Kungsängen, Uppsala kommun"
+    },
+    {
+      "title": "Alfa",
+      "location": "Sköndal, Stockholms kommun",
+      "price": "fr. 2 190 000 kr",
+      "rooms": "1-4 rum",
+      "size": "28-96 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/skondal-alfa-21617849",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/skondal-alfa-21617849"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Sköndal, Stockholms kommun"
+    },
+    {
+      "title": "Fransyskan",
+      "location": "Slakthusområdet, Stockholms kommun",
+      "price": "fr. 2 995 000 kr",
+      "rooms": "1-5 rum",
+      "size": "30-127 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/slakthusomradet-fransyskan-21503180",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/slakthusomradet-fransyskan-21503180"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Slakthusområdet, Stockholms kommun"
+    },
+    {
+      "title": "The Mews",
+      "location": "Slakthusområdet, Stockholms kommun",
+      "price": "fr. 3 095 000 kr",
+      "rooms": "2-4 rum",
+      "size": "36-88 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/slakthusomradet-the-mews-21654740",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/slakthusomradet-the-mews-21654740"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Slakthusområdet, Stockholms kommun"
+    },
+    {
+      "title": "Brf Solängen",
+      "location": "Smedby, Österåkers kommun",
+      "price": "fr. 2 570 000 kr",
+      "rooms": "2-4 rum",
+      "size": "59-116 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/smedby-brf-solangen-21670766",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/smedby-brf-solangen-21670766"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Smedby, Österåkers kommun"
+    },
+    {
+      "title": "Väderviken",
+      "location": "Sollentuna, Sollentuna kommun",
+      "price": "fr. 1 355 000 kr",
+      "rooms": "1-5 rum",
+      "size": "22-125 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/vaderviken-19289736",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/vaderviken-19289736"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Sollentuna, Sollentuna kommun"
+    },
+    {
+      "title": "Haga Palett Ockra",
+      "location": "Solna, Solna kommun",
+      "price": "fr. 2 695 000 kr",
+      "rooms": "1-6 rum",
+      "size": "27-115 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/solna-haga-palett-ockra-21456974",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/solna-haga-palett-ockra-21456974"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Solna, Solna kommun"
+    },
+    {
+      "title": "Sjöviken",
+      "location": "Solna, Solna kommun",
+      "price": "fr. 2 495 000 kr",
+      "rooms": "1-4 rum",
+      "size": "27-93 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/sjoviken-21660500",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/sjoviken-21660500"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Solna, Solna kommun"
+    },
+    {
+      "title": "Stationshuset",
+      "location": "Solna, Solna kommun",
+      "price": "fr. 2 195 000 kr",
+      "rooms": "1-5 rum",
+      "size": "28-124 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/solna-stationshuset-21703886",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/solna-stationshuset-21703886"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Solna, Solna kommun"
+    },
+    {
+      "title": "Glasblåseriets väg",
+      "location": "Steninge Slottsby, Sigtuna kommun",
+      "price": "2 995 000 kr",
+      "rooms": "4 rum",
+      "size": "108+5,5 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/radhus-4rum-steninge-slottsby-sigtuna-kommun-glasblaseriets-vag-21362462",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/radhus-4rum-steninge-slottsby-sigtuna-kommun-glasblaseriets-vag-21362462"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Steninge Slottsby, Sigtuna kommun"
+    },
+    {
+      "title": "Glasblåseriets väg ETAPP 2",
+      "location": "Steninge Slottsby, Sigtuna kommun",
+      "price": "2 995 000 kr",
+      "rooms": "4 rum",
+      "size": "108+5,5 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/radhus-4rum-steninge-slottsby-sigtuna-kommun-glasblaseriets-vag-etapp-2-21362461",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/radhus-4rum-steninge-slottsby-sigtuna-kommun-glasblaseriets-vag-etapp-2-21362461"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Steninge Slottsby, Sigtuna kommun"
+    },
+    {
+      "title": "BoKlok Kronan",
+      "location": "Steninge slottsby, Sigtuna kommun",
+      "price": "fr. 2 950 000 kr",
+      "rooms": "5 rum",
+      "size": "117 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/steninge-slottsby-boklok-kronan-18056695",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/steninge-slottsby-boklok-kronan-18056695"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Steninge slottsby, Sigtuna kommun"
+    },
+    {
+      "title": "Tegelbruketsväg 22",
+      "location": "Steninge slottsby, Sigtuna kommun",
+      "price": "3 050 000 kr",
+      "rooms": "5 rum",
+      "size": "117 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/radhus-5rum-steninge-slottsby-sigtuna-kommun-tegelbruketsvag-22-21680787",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/radhus-5rum-steninge-slottsby-sigtuna-kommun-tegelbruketsvag-22-21680787"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Steninge slottsby, Sigtuna kommun"
+    },
+    {
+      "title": "Tegelbruketsväg 27",
+      "location": "Steninge slottsby, Sigtuna kommun",
+      "price": "3 000 000 kr",
+      "rooms": "5 rum",
+      "size": "117 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/radhus-5rum-steninge-slottsby-sigtuna-kommun-tegelbruketsvag-27-21610818",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/radhus-5rum-steninge-slottsby-sigtuna-kommun-tegelbruketsvag-27-21610818"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Steninge slottsby, Sigtuna kommun"
+    },
+    {
+      "title": "Tegelbruketsväg 44",
+      "location": "Steninge slottsby, Sigtuna kommun",
+      "price": "2 950 000 kr",
+      "rooms": "5 rum",
+      "size": "117 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/radhus-5rum-steninge-slottsby-sigtuna-kommun-tegelbruketsvag-44-19206457",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/radhus-5rum-steninge-slottsby-sigtuna-kommun-tegelbruketsvag-44-19206457"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Steninge slottsby, Sigtuna kommun"
+    },
+    {
+      "title": "Tegeltornen",
+      "location": "Sundbyberg, Sundbybergs kommun",
+      "price": "fr. 2 495 000 kr",
+      "rooms": "1-4 rum",
+      "size": "33-85 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/sundbyberg-tegeltornen-21449729",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/sundbyberg-tegeltornen-21449729"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Sundbyberg, Sundbybergs kommun"
+    },
+    {
+      "title": "Slättvägen 8",
+      "location": "Sundsvik, Nykvarns kommun",
+      "price": "3 095 000 kr",
+      "rooms": "6 rum",
+      "size": "135 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/villa-6rum-sundsvik-nykvarns-kommun-slattvagen-8-21388061",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/villa-6rum-sundsvik-nykvarns-kommun-slattvagen-8-21388061"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Sundsvik, Nykvarns kommun"
+    },
+    {
+      "title": "Diktafonen",
+      "location": "Telefonplan, Stockholms kommun",
+      "price": "fr. 2 385 000 kr",
+      "rooms": "1-4 rum",
+      "size": "30-94 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/telefonplan-diktafonen-21593581",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/telefonplan-diktafonen-21593581"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Telefonplan, Stockholms kommun"
+    },
+    {
+      "title": "Viridum",
+      "location": "Telefonplan, Stockholms kommun",
+      "price": "fr. 2 650 000 kr",
+      "rooms": "1-5 rum",
+      "size": "33-118 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/telefonplan-viridum-21464675",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/telefonplan-viridum-21464675"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Telefonplan, Stockholms kommun"
+    },
+    {
+      "title": "Växeln",
+      "location": "Telefonplan, Stockholms kommun",
+      "price": "fr. 2 495 000 kr",
+      "rooms": "1-4 rum",
+      "size": "26-92 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/telefonplan-vaxeln-18194636",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/telefonplan-vaxeln-18194636"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Telefonplan, Stockholms kommun"
+    },
+    {
+      "title": "Glimmer i Tollare",
+      "location": "Tollare, Nacka kommun",
+      "price": "fr. 2 595 000 kr",
+      "rooms": "2-5 rum",
+      "size": "42-160 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/tollare-glimmer-i-tollare-21620457",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/tollare-glimmer-i-tollare-21620457"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Tollare, Nacka kommun"
+    },
+    {
+      "title": "Sigrids väg 27, lgh  nr 48",
+      "location": "Trädgårdsstaden, Upplands-Bro kommun",
+      "price": "2 373 000 kr",
+      "rooms": "4 rum",
+      "size": "85 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-tradgardsstaden-upplands-bro-kommun-sigrids-vag-27,-lgh-nr-48-21535385",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/lagenhet-4rum-tradgardsstaden-upplands-bro-kommun-sigrids-vag-27,-lgh-nr-48-21535385"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Trädgårdsstaden, Upplands-Bro kommun"
+    },
+    {
+      "title": "Sigrids väg 27, lgh nr 45",
+      "location": "Trädgårdsstaden, Upplands-Bro kommun",
+      "price": "2 395 000 kr",
+      "rooms": "4 rum",
+      "size": "85 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-tradgardsstaden-upplands-bro-kommun-sigrids-vag-27,-lgh-nr-45-21534799",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/lagenhet-4rum-tradgardsstaden-upplands-bro-kommun-sigrids-vag-27,-lgh-nr-45-21534799"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Trädgårdsstaden, Upplands-Bro kommun"
+    },
+    {
+      "title": "Sigrids väg 27, lgh nr 51",
+      "location": "Trädgårdsstaden, Upplands-Bro kommun",
+      "price": "2 373 000 kr",
+      "rooms": "4 rum",
+      "size": "85 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-tradgardsstaden-upplands-bro-kommun-sigrids-vag-27,-lgh-nr-51-21563159",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/lagenhet-4rum-tradgardsstaden-upplands-bro-kommun-sigrids-vag-27,-lgh-nr-51-21563159"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Trädgårdsstaden, Upplands-Bro kommun"
+    },
+    {
+      "title": "Brf Aroma - Träkvista Torg",
+      "location": "Träkvista, Ekerö kommun",
+      "price": "fr. 2 295 000 kr",
+      "rooms": "2-5 rum",
+      "size": "46-138 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/trakvista-brf-aroma-trakvista-torg-21360500",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/trakvista-brf-aroma-trakvista-torg-21360500"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Träkvista, Ekerö kommun"
+    },
+    {
+      "title": "Ture Allé",
+      "location": "Tureberg, Sollentuna kommun",
+      "price": "fr. 1 550 000 kr",
+      "rooms": "1-4 rum",
+      "size": "31-84 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/tureberg-ture-alle-21515408",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/tureberg-ture-alle-21515408"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Tureberg, Sollentuna kommun"
+    },
+    {
+      "title": "Mandelblomman",
+      "location": "Täby Park, Täby kommun",
+      "price": "fr. 1 810 000 kr",
+      "rooms": "1-5 rum",
+      "size": "29-110 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/taby-park-mandelblomman-21393332",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/taby-park-mandelblomman-21393332"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Täby Park, Täby kommun"
+    },
+    {
+      "title": "Månstenen Täby Park",
+      "location": "Täby Park, Täby kommun",
+      "price": "fr. 2 960 000 kr",
+      "rooms": "2-4 rum",
+      "size": "54-87 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/taby-park-manstenen-taby-park-21401040",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/taby-park-manstenen-taby-park-21401040"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Täby Park, Täby kommun"
+    },
+    {
+      "title": "Roden",
+      "location": "Täby Park, Täby kommun",
+      "price": "fr. 1 990 000 kr",
+      "rooms": "1-5 rum",
+      "size": "29-112 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/taby-park-roden-21339486",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/taby-park-roden-21339486"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Täby Park, Täby kommun"
+    },
+    {
+      "title": "Myntbacken 15",
+      "location": "Täljöviken, Österåkers kommun",
+      "price": "2 945 000 kr",
+      "rooms": "4 rum",
+      "size": "93 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/lagenhet-4rum-taljoviken-osterakers-kommun-myntbacken-15-21603873",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/lagenhet-4rum-taljoviken-osterakers-kommun-myntbacken-15-21603873"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Täljöviken, Österåkers kommun"
+    },
+    {
+      "title": "Brf Juno",
+      "location": "Vega, Haninge kommun",
+      "price": "fr. 1 725 000 kr",
+      "rooms": "1-4 rum",
+      "size": "34-82 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/brf-juno-21416093",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/brf-juno-21416093"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Vega, Haninge kommun"
+    },
+    {
+      "title": "Brf Lysa",
+      "location": "Vega, Haninge kommun",
+      "price": "fr. 2 395 000 kr",
+      "rooms": "2-4 rum",
+      "size": "45-82 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/vega-brf-lysa-21309078",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/vega-brf-lysa-21309078"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Vega, Haninge kommun"
+    },
+    {
+      "title": "Brf Skimra",
+      "location": "Vega, Haninge kommun",
+      "price": "fr. 1 925 000 kr",
+      "rooms": "1-4 rum",
+      "size": "34-93 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/vega-brf-skimra-21497092",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/vega-brf-skimra-21497092"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Vega, Haninge kommun"
+    },
+    {
+      "title": "Brf Vega Garden",
+      "location": "Vega, Haninge kommun",
+      "price": "fr. 1 490 000 kr",
+      "rooms": "1-6 rum",
+      "size": "30-149 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/vega-brf-vega-garden-19881925",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/vega-brf-vega-garden-19881925"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Vega, Haninge kommun"
+    },
+    {
+      "title": "BRF Kolvikshusen",
+      "location": "Värmdö, Värmdö kommun",
+      "price": "fr. 2 800 000 kr",
+      "rooms": "2-5 rum",
+      "size": "51-111 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/brf-kolvikshusen-21625146",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/brf-kolvikshusen-21625146"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Värmdö, Värmdö kommun"
+    },
+    {
+      "title": "Brf Valla",
+      "location": "Väsjö torg, Sollentuna kommun",
+      "price": "fr. 2 295 000 kr",
+      "rooms": "2-4 rum",
+      "size": "46-96 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/vasjo-torg-brf-valla-18204859",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/vasjo-torg-brf-valla-18204859"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Väsjö torg, Sollentuna kommun"
+    },
+    {
+      "title": "Solspegeln",
+      "location": "Väsjön, Sollentuna kommun",
+      "price": "fr. 1 390 000 kr",
+      "rooms": "1-4 rum",
+      "size": "31-88 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/vasjon-solspegeln-21655551",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/vasjon-solspegeln-21655551"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Väsjön, Sollentuna kommun"
+    },
+    {
+      "title": "Utblickarna, Lommarstranden",
+      "location": "bostadsrätter, Norrtälje kommun",
+      "price": "fr. 1 850 000 kr",
+      "rooms": "2-4 rum",
+      "size": "41-97 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/bostadsratter-utblickarna,-lommarstranden-21647796",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/bostadsratter-utblickarna,-lommarstranden-21647796"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "bostadsrätter, Norrtälje kommun"
+    },
+    {
+      "title": "Brf Kavelbron",
+      "location": "Älvsjö, Stockholms kommun",
+      "price": "fr. 1 870 000 kr",
+      "rooms": "1-6 rum",
+      "size": "28-132 m²",
+      "source": "hemnet",
+      "sources": [
+        "hemnet"
+      ],
+      "listing_url": "https://www.hemnet.se/bostad/alvsjo-brf-kavelbron-21552346",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/alvsjo-brf-kavelbron-21552346"
+      ],
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Älvsjö, Stockholms kommun"
+    },
+    {
+      "title": "Vide",
       "location": "Åkersberga, Österåkers kommun",
       "price": "fr. 1 990 000 kr",
       "rooms": "2-4 rum",
@@ -83,13 +1871,15 @@
       "sources": [
         "hemnet"
       ],
-      "listing_url": null,
-      "listing_urls": [],
-      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4",
-      "source_urls": [
-        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&price_max=3000000&rooms_min=4"
+      "listing_url": "https://www.hemnet.se/bostad/akersberga-vide-21633869",
+      "listing_urls": [
+        "https://www.hemnet.se/bostad/akersberga-vide-21633869"
       ],
-      "matched_name": "Åkersberga"
+      "source_url": "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4",
+      "source_urls": [
+        "https://www.hemnet.se/bostader?location_ids%5B%5D=17744&location_ids%5B%5D=17745&location_ids%5B%5D=17746&price_max=3000000&rooms_min=4"
+      ],
+      "matched_name": "Åkersberga, Österåkers kommun"
     }
   ]
 }

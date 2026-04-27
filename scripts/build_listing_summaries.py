@@ -39,7 +39,46 @@ def format_filter_label(url: str) -> str:
     return "; ".join(labels) or url
 
 
+def load_source_metadata() -> dict[str, dict]:
+    metadata = {}
+    preferred_booli = SOURCES / "booli_graphql_area.json"
+    for path in SOURCES.glob("*.json"):
+        if preferred_booli.exists() and path.name.startswith("booli_") and path.name != preferred_booli.name:
+            continue
+        payload = load_json(path, None)
+        if not isinstance(payload, dict):
+            continue
+        url = payload.get("search_url")
+        if not url:
+            continue
+        metadata[url] = {
+            "source": payload.get("source"),
+            "elapsed_seconds": payload.get("elapsed_seconds"),
+            "pages_seen": payload.get("pages_seen"),
+            "raw_items_seen": payload.get("raw_items_seen"),
+            "max_sl_stop_distance_m": payload.get("max_sl_stop_distance_m"),
+            "captured_items": len(payload.get("items") or []),
+        }
+    return metadata
+
+
 def build_search_parameters(items: list[dict]) -> dict:
+    source_metadata = load_source_metadata()
+    if source_metadata:
+        rows = []
+        for url, extra in sorted(source_metadata.items(), key=lambda kv: ((kv[1].get("source") or ""), kv[0])):
+            source = extra.get("source") or "unknown"
+            rows.append({
+                "source": source,
+                "url": url,
+                "parameters": format_filter_label(url),
+                **{key: value for key, value in extra.items() if key != "source"},
+            })
+        return {
+            "items": rows,
+            "note": "These source searches cover Stockholm, Uppsala, and Södermanland county-level pages, then the local build keeps listings whose coordinates are within 500m of an SL stop point.",
+        }
+
     source_urls: dict[str, set[str]] = {}
     for item in items:
         sources = item.get("sources") or [item.get("source") or "unknown"]
@@ -52,15 +91,17 @@ def build_search_parameters(items: list[dict]) -> dict:
     rows = []
     for source, urls in sorted(source_urls.items()):
         for url in sorted(urls):
+            extra = source_metadata.get(url, {})
             rows.append({
                 "source": source,
                 "url": url,
                 "parameters": format_filter_label(url),
+                **extra,
             })
 
     return {
         "items": rows,
-        "note": "These are the source search URLs/filters used by the currently published local listing dataset.",
+        "note": "These source searches cover Stockholm, Uppsala, and Södermanland county-level pages, then the local build keeps listings whose coordinates are within 500m of an SL stop point.",
     }
 
 

@@ -239,7 +239,10 @@ def merge_row(existing: dict[str, Any], incoming: dict[str, Any]) -> dict[str, A
     listing_urls.update(item for item in (incoming.get("listing_urls") or []) if item)
     if listing_urls:
         merged["listing_urls"] = sorted(listing_urls)
+    aggregated_keys = {"source", "sources", "source_url", "source_urls", "listing_url", "listing_urls"}
     for key, value in incoming.items():
+        if key in aggregated_keys:
+            continue
         if value not in (None, "", [], {}):
             merged[key] = value
     if source_urls and not merged.get("source_url"):
@@ -252,13 +255,31 @@ def merge_row(existing: dict[str, Any], incoming: dict[str, Any]) -> dict[str, A
 def load_raw_sources() -> list[dict[str, Any]]:
     raw_rows: list[dict[str, Any]] = []
 
-    for item in load_json(HEMNET_PATH, []):
-        raw_rows.append({**item, "source": "hemnet", "source_url": DEFAULT_HEMNET_SEARCH_URL})
+    hemnet_source_files = sorted(path for path in SITE_SOURCES_DIR.glob("hemnet_*.json") if path.name != "hemnet_links_manual.json")
+    if hemnet_source_files:
+        for path in hemnet_source_files:
+            payload = load_json(path, {})
+            items = payload.get("items", []) if isinstance(payload, dict) else payload
+            search_url = payload.get("search_url") if isinstance(payload, dict) else None
+            for item in items:
+                raw_rows.append({**item, "source": "hemnet", "source_url": item.get("source_url") or search_url})
+    else:
+        for item in load_json(HEMNET_PATH, []):
+            raw_rows.append({**item, "source": "hemnet", "source_url": DEFAULT_HEMNET_SEARCH_URL})
 
-    for item in load_json(SITE_SOURCES_DIR / "listings_supplemental.json", []):
-        raw_rows.append({**item, "source": item.get("source_portal", "hemnet") or "hemnet"})
+    # The supplemental file predates the coordinate-based Hemnet/Booli captures.
+    # Only use it as a fallback when no fresh portal source files exist.
+    if not hemnet_source_files and not (SITE_SOURCES_DIR / "booli_sl_area.json").exists():
+        for item in load_json(SITE_SOURCES_DIR / "listings_supplemental.json", []):
+            raw_rows.append({**item, "source": item.get("source_portal", "hemnet") or "hemnet"})
 
-    for path in sorted(SITE_SOURCES_DIR.glob("booli_*.json")):
+    if (SITE_SOURCES_DIR / "booli_graphql_area.json").exists():
+        booli_source_files = [SITE_SOURCES_DIR / "booli_graphql_area.json"]
+    elif (SITE_SOURCES_DIR / "booli_sl_area.json").exists():
+        booli_source_files = [SITE_SOURCES_DIR / "booli_sl_area.json"]
+    else:
+        booli_source_files = sorted(SITE_SOURCES_DIR.glob("booli_*.json"))
+    for path in booli_source_files:
         payload = load_json(path, {})
         items = payload.get("items", []) if isinstance(payload, dict) else payload
         search_url = payload.get("search_url") if isinstance(payload, dict) else None
@@ -316,6 +337,10 @@ def canonical_rows() -> list[dict[str, Any]]:
             "status_text": record.get("status_text") or record.get("days_on_booli"),
             "market_age_text": market_age_text(record),
             "market_age_days": parse_market_age_days(record),
+            "nearest_sl_stop": record.get("nearest_sl_stop"),
+            "nearest_sl_stop_point": record.get("nearest_sl_stop_point"),
+            "nearest_sl_stop_type": record.get("nearest_sl_stop_type"),
+            "nearest_sl_stop_distance_m": record.get("nearest_sl_stop_distance_m"),
             "raw_json": json.dumps(record, ensure_ascii=False, sort_keys=True),
             "first_seen_at": record.get("first_seen_at") or now,
             "last_seen_at": now,

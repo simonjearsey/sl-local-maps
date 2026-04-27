@@ -216,10 +216,11 @@
       const propertyType = item.property_type ? `<br>Type: ${item.property_type}` : '';
       const category = item.category_label ? `<br>Status: ${item.category_label}` : '';
       const recent = isRecentListing(item) ? `<br>Fresh listing: ${escapeHtml(item.market_age_text || 'first week')}` : '';
+      const nearestStop = item.nearest_sl_stop ? `<br>Nearest SL stop: ${escapeHtml(item.nearest_sl_stop)}${Number.isFinite(item.nearest_sl_stop_distance_m) ? ` (${item.nearest_sl_stop_distance_m}m)` : ''}` : '';
       const matched = item.matched_name ? `<br>Matched via: ${item.matched_name} (${item.matched_kind}, ${item.match_score})` : '';
       const listingLinks = (item.listing_urls && item.listing_urls.length ? item.listing_urls : [item.listing_url]).filter(Boolean);
       const sourceLinks = (item.source_urls && item.source_urls.length ? item.source_urls : [item.source_url]).filter(Boolean);
-      return `<b>${escapeHtml(item.title || 'Listing')}</b>${location}${price}${size}${rooms}${portal}${propertyType}${category}${recent}${matched}${listingLinks.map((url, idx) => linkLine(idx ? `Open listing ${idx + 1}` : 'Open listing', url)).join('')}${sourceLinks.map((url, idx) => linkLine(idx ? `Open source search ${idx + 1}` : 'Open source search', url)).join('')}`;
+      return `<b>${escapeHtml(item.title || 'Listing')}</b>${location}${price}${size}${rooms}${portal}${propertyType}${category}${recent}${nearestStop}${matched}${listingLinks.map((url, idx) => linkLine(idx ? `Open listing ${idx + 1}` : 'Open listing', url)).join('')}${sourceLinks.map((url, idx) => linkLine(idx ? `Open source search ${idx + 1}` : 'Open source search', url)).join('')}`;
     }
 
 
@@ -237,7 +238,7 @@
       fetch('./data/search-parameters.json', { cache: 'no-store' }).then((r) => r.json()).then((payload) => {
         const rows = payload.items || [];
         document.getElementById('searchParameters').innerHTML = rows.length ? rows.map((item) => `
-          <div class="data-row"><b>${escapeHtml(item.source)}</b>${linkOrSource(item)}<br><span class="subtle">${escapeHtml(item.parameters)}</span></div>
+          <div class="data-row"><b>${escapeHtml(item.source)}</b>${linkOrSource(item)}<br><span class="subtle">${escapeHtml(item.parameters)}</span>${Number.isFinite(item.elapsed_seconds) ? `<br><span class="subtle">Search time: ${item.elapsed_seconds.toFixed(1)}s · pages: ${item.pages_seen ?? '?'} · raw: ${item.raw_items_seen ?? '?'} · kept near SL: ${item.captured_items ?? '?'}</span>` : ''}</div>
         `).join('') : `<span class="subtle">No search metadata available.</span>`;
       }).catch((error) => {
         document.getElementById('searchParameters').textContent = `Failed to load search parameters: ${error.message}`;
