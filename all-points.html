@@ -51,6 +51,13 @@
     .pill { display: inline-block; margin: 2px 4px 2px 0; padding: 2px 6px; border-radius: 999px; background: #0d1430; border: 1px solid #314266; color: var(--muted); font-size: 11px; }
     .price-delta.plus { color: #22c55e; }
     .price-delta.minus { color: #ff6b6b; }
+    .rating-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; margin-top: 8px; }
+    .rating-grid button, .inline-action { padding: 5px 7px; border-radius: 8px; font-size: 12px; cursor: pointer; }
+    .rating-grid button.active { background: #9bc3ff; color: #061022; border-color: #cfe2ff; font-weight: 700; }
+    .inline-action { width: auto; margin: 6px 6px 0 0; display: inline-block; }
+    .inline-action.danger { border-color: #7f1d1d; color: #fecaca; }
+    .inline-action.danger.active { background: #ef4444; color: white; }
+    details.card summary { cursor: pointer; font-weight: 700; }
     a { color: #9bc3ff; }
     @media (max-width: 960px) { .wrap { grid-template-columns: 1fr; grid-template-rows: auto 60vh; } #map { height: 60vh; } }
   </style>
@@ -126,6 +133,16 @@
       </div>
 
       <div class="card small">
+        <h2>Top rated listings</h2>
+        <div class="data-list" id="topRatedListings">Loading ratings…</div>
+      </div>
+
+      <details class="card small">
+        <summary>Rejected listings <span class="subtle" id="rejectedCount"></span></summary>
+        <div class="data-list" id="rejectedListings" style="margin-top:10px;">Loading ratings…</div>
+      </details>
+
+      <div class="card small">
         <h2>Sold items</h2>
         <div class="subtle" style="margin-bottom:8px;">Final sold price compared with the initially captured listing price.</div>
         <div class="data-list" id="soldItems">Loading…</div>
@@ -176,7 +193,7 @@
     const stopLayer = L.layerGroup().addTo(map);
     const listingLayer = L.layerGroup().addTo(map);
 
-    const state = { stops: [], listings: [] };
+    const state = { stops: [], listings: [], ratings: {}, ratingsStorage: 'unknown' };
 
     function formatPublishedAt(value) {
       if (!value) return 'unknown';
@@ -206,6 +223,49 @@
       return `<br><a href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
     }
 
+    function listingKey(item) {
+      const urls = (item.listing_urls && item.listing_urls.length ? item.listing_urls : [item.listing_url]).filter(Boolean).sort();
+      return item.dedupe_key || `${(item.sources || [item.source]).join('+')}|${item.source_id || ''}|${urls[0] || ''}|${item.title || ''}|${item.location || ''}`;
+    }
+
+    function ratingFor(item) {
+      return state.ratings[listingKey(item)] || {};
+    }
+
+    function applyRatingsToListings() {
+      state.listings = state.listings.map((item) => ({ ...item, user_rating: ratingFor(item).rating, rejected: Boolean(ratingFor(item).rejected) }));
+    }
+
+    async function saveListingRating(id, patch) {
+      const response = await fetch('/api/listing-ratings', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ id, ...patch }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload.error || `HTTP ${response.status}`);
+      state.ratings[id] = payload.item;
+      applyRatingsToListings();
+      render();
+      renderRatingLists();
+    }
+
+    window.rateListing = function(id, rating) {
+      saveListingRating(id, { rating }).catch((error) => alert(`Could not save rating: ${error.message}`));
+    };
+
+    window.toggleRejected = function(id) {
+      const current = state.ratings[id] || {};
+      saveListingRating(id, { rejected: !current.rejected }).catch((error) => alert(`Could not save rejection: ${error.message}`));
+    };
+
+    function ratingControls(item) {
+      const id = listingKey(item);
+      const current = state.ratings[id] || {};
+      const buttons = Array.from({ length: 11 }, (_, rating) => `<button type="button" class="${current.rating === rating ? 'active' : ''}" onclick="rateListing('${escapeJs(id)}', ${rating})">${rating}</button>`).join('');
+      return `<br><div class="small subtle">Your rating: ${Number.isInteger(current.rating) ? `${current.rating}/10` : 'not rated'}${current.rejected ? ' · rejected' : ''}</div><div class="rating-grid">${buttons}</div><button type="button" class="inline-action danger ${current.rejected ? 'active' : ''}" onclick="toggleRejected('${escapeJs(id)}')">👎 ${current.rejected ? 'Undo reject' : 'Reject'}</button>`;
+    }
+
     function popupHtmlListing(item) {
       const location = item.location ? `<br>Location: ${item.location}` : '';
       const price = item.price ? `<br>Price: ${item.price}` : '';
@@ -220,13 +280,19 @@
       const matched = item.matched_name ? `<br>Matched via: ${item.matched_name} (${item.matched_kind}, ${item.match_score})` : '';
       const listingLinks = (item.listing_urls && item.listing_urls.length ? item.listing_urls : [item.listing_url]).filter(Boolean);
       const sourceLinks = (item.source_urls && item.source_urls.length ? item.source_urls : [item.source_url]).filter(Boolean);
-      return `<b>${escapeHtml(item.title || 'Listing')}</b>${location}${price}${size}${rooms}${portal}${propertyType}${category}${recent}${nearestStop}${matched}${listingLinks.map((url, idx) => linkLine(idx ? `Open listing ${idx + 1}` : 'Open listing', url)).join('')}${sourceLinks.map((url, idx) => linkLine(idx ? `Open source search ${idx + 1}` : 'Open source search', url)).join('')}`;
+      const rating = Number.isInteger(item.user_rating) ? `<br>Rating: ${item.user_rating}/10` : '';
+      const rejected = item.rejected ? '<br>Rejected: yes' : '';
+      return `<b>${escapeHtml(item.title || 'Listing')}</b>${location}${price}${size}${rooms}${portal}${propertyType}${category}${recent}${nearestStop}${matched}${rating}${rejected}${listingLinks.map((url, idx) => linkLine(idx ? `Open listing ${idx + 1}` : 'Open listing', url)).join('')}${sourceLinks.map((url, idx) => linkLine(idx ? `Open source search ${idx + 1}` : 'Open source search', url)).join('')}${ratingControls(item)}`;
     }
 
 
 
     function escapeHtml(value) {
       return String(value ?? '').replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
+    }
+
+    function escapeJs(value) {
+      return String(value ?? '').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n').replace(/\r/g, '\\r');
     }
 
     function linkOrSource(item) {
@@ -267,6 +333,41 @@
       }).catch((error) => {
         document.getElementById('soldItems').textContent = `Failed to load sold items: ${error.message}`;
       });
+    }
+
+    async function loadRatings() {
+      try {
+        const payload = await fetch('/api/listing-ratings', { cache: 'no-store' }).then((r) => r.json());
+        state.ratings = payload.items || {};
+        state.ratingsStorage = payload.storage || 'unknown';
+      } catch (error) {
+        state.ratings = {};
+        state.ratingsStorage = 'unavailable';
+      }
+    }
+
+    function compactListingRow(item, extra = '') {
+      return `<div class="data-row"><b>${escapeHtml(item.title || 'Listing')}</b>${linkOrSource(item)}<br>
+        <span class="subtle">${escapeHtml(item.location || '')}${item.nearest_sl_stop ? ` · ${escapeHtml(item.nearest_sl_stop)} (${item.nearest_sl_stop_distance_m}m)` : ''}</span><br>
+        <span class="pill">${escapeHtml(item.price || 'price unknown')}</span><span class="pill">${escapeHtml(item.rooms || 'rooms unknown')}</span>${extra}</div>`;
+    }
+
+    function renderRatingLists() {
+      const rated = state.listings
+        .filter((item) => Number.isInteger(item.user_rating) && !item.rejected)
+        .sort((a, b) => (b.user_rating - a.user_rating) || String(a.title || '').localeCompare(String(b.title || '')))
+        .slice(0, 10);
+      document.getElementById('topRatedListings').innerHTML = rated.length
+        ? rated.map((item) => compactListingRow(item, `<span class="pill">${item.user_rating}/10</span>`)).join('')
+        : `<span class="subtle">No rated listings yet. Open a listing marker and give it 0–10 points.</span>`;
+
+      const rejected = state.listings
+        .filter((item) => item.rejected)
+        .sort((a, b) => String(a.title || '').localeCompare(String(b.title || '')));
+      document.getElementById('rejectedCount').textContent = rejected.length ? `(${rejected.length})` : '(0)';
+      document.getElementById('rejectedListings').innerHTML = rejected.length
+        ? rejected.map((item) => compactListingRow(item, `<button type="button" class="inline-action" onclick="toggleRejected('${escapeJs(listingKey(item))}')">Undo</button>`)).join('')
+        : `<span class="subtle">No rejected listings yet.</span>`;
     }
 
     function render() {
@@ -314,6 +415,8 @@
       visibleListings.forEach((item) => {
         L.marker([item.lat, item.lon], { icon: listingIcon(item.category, item) }).bindPopup(popupHtmlListing(item)).addTo(listingLayer);
       });
+
+      renderRatingLists();
 
       document.getElementById('countVisibleStops').textContent = visibleStops.length.toLocaleString();
       document.getElementById('countVisibleListings').textContent = visibleListings.length.toLocaleString();
@@ -404,12 +507,14 @@
     Promise.all([
       fetch('./data/sl-stop-points.json').then((r) => r.json()),
       fetch('./data/listings.json').then((r) => r.json()),
+      loadRatings(),
     ]).then(([stops, listingPayload]) => {
       state.stops = stops;
       state.listings = listingPayload.items || [];
+      applyRatingsToListings();
       document.getElementById('countStops').textContent = stops.length.toLocaleString();
       document.getElementById('countListings').textContent = (listingPayload.mapped_count || state.listings.length).toLocaleString();
-      document.getElementById('matchNote').innerHTML = `Local listings DB rows: <b>${listingPayload.source_count}</b>. Mapped rows on the map: <b>${listingPayload.mapped_count}</b>.`; 
+      document.getElementById('matchNote').innerHTML = `Local listings DB rows: <b>${listingPayload.source_count}</b>. Mapped rows on the map: <b>${listingPayload.mapped_count}</b>. Ratings storage: <b>${escapeHtml(state.ratingsStorage)}</b>.`; 
       render();
     }).catch((error) => {
       document.getElementById('matchNote').textContent = `Failed to load local JSON data: ${error.message}`;
