@@ -88,6 +88,20 @@
           </select>
           <button id="reset">Reset view</button>
         </div>
+        <div class="row" style="margin-top:8px;">
+          <input type="number" id="minPrice" placeholder="Min price (kr)" />
+          <input type="number" id="maxPrice" placeholder="Max price (kr)" />
+        </div>
+        <div class="row" style="margin-top:8px;">
+          <input type="number" id="minRooms" placeholder="Min rooms" step="0.5" />
+          <input type="number" id="maxRooms" placeholder="Max rooms" step="0.5" />
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Actions</h2>
+        <button id="scanButton">Scan for new listings</button>
+        <div class="subtle small" style="margin-top:8px;" id="lastCrawl">Last crawl: Loading...</div>
       </div>
 
       <div class="card legend">
@@ -174,7 +188,10 @@
     fetch('./data/version.json', { cache: 'no-store' })
       .then((r) => r.json())
       .then((meta) => {
-        document.getElementById('projectMeta').innerHTML = `<b>${meta.version || 'unversioned'}</b> · published ${formatPublishedAt(meta.published_at)} · branch ${meta.source_branch || 'main'}`;
+        const publishedAt = formatPublishedAt(meta.published_at);
+        document.getElementById('projectMeta').innerHTML = `<b>${meta.version || 'unversioned'}</b> · published ${publishedAt} · branch ${meta.source_branch || 'main'}`;
+        const lastCrawl = document.getElementById('lastCrawl');
+        if (lastCrawl) lastCrawl.textContent = `Last crawl: ${publishedAt}`;
       })
       .catch(() => {
         document.getElementById('projectMeta').textContent = 'Version metadata unavailable';
@@ -253,6 +270,10 @@
       const type = document.getElementById('type').value;
       const listingMode = document.getElementById('listingFilter').value;
       const portal = document.getElementById('portalFilter').value;
+      const minPrice = parseInt(document.getElementById('minPrice').value, 10) || 0;
+      const maxPrice = parseInt(document.getElementById('maxPrice').value, 10) || Infinity;
+      const minRooms = parseFloat(document.getElementById('minRooms').value) || 0;
+      const maxRooms = parseFloat(document.getElementById('maxRooms').value) || Infinity;
 
       const visibleStops = state.stops.filter((point) => {
         if (listingMode === 'LISTINGS_ONLY') return false;
@@ -265,6 +286,13 @@
       const visibleListings = state.listings.filter((item) => {
         if (listingMode === 'STOPS_ONLY') return false;
         if (portal !== 'ALL' && item.source !== portal) return false;
+        
+        const price = parseInt(item.price ? String(item.price).replace(/\D/g, '') : 0, 10) || 0;
+        const rooms = parseFloat(String(item.rooms || '').replace(',', '.')) || 0;
+        
+        if (price < minPrice || price > maxPrice) return false;
+        if (rooms < minRooms || rooms > maxRooms) return false;
+
         if (!q) return true;
         const haystack = `${item.title || ''} ${item.location || ''} ${item.address || ''} ${item.matched_name || ''}`.toLowerCase();
         return haystack.includes(q);
@@ -291,11 +319,19 @@
       document.getElementById('type').value = 'ALL';
       document.getElementById('listingFilter').value = 'ALL';
       document.getElementById('portalFilter').value = 'ALL';
+      document.getElementById('minPrice').value = '';
+      document.getElementById('maxPrice').value = '';
+      document.getElementById('minRooms').value = '';
+      document.getElementById('maxRooms').value = '';
       map.setView([59.3293, 18.0686], 10);
       render();
     }
 
     document.getElementById('reset').addEventListener('click', resetView);
+    document.getElementById('scanButton').addEventListener('click', () => {
+      window.open('https://github.com/simonjearsey/sl-local-maps/actions', '_blank', 'noopener,noreferrer');
+    });
+    
     // Added debounce for better performance
     function debounce(func, wait) {
       let timeout;
@@ -305,6 +341,10 @@
       };
     }
     document.getElementById('search').addEventListener('input', debounce(render, 250));
+    document.getElementById('minPrice').addEventListener('input', debounce(render, 250));
+    document.getElementById('maxPrice').addEventListener('input', debounce(render, 250));
+    document.getElementById('minRooms').addEventListener('input', debounce(render, 250));
+    document.getElementById('maxRooms').addEventListener('input', debounce(render, 250));
     document.getElementById('type').addEventListener('change', render);
     document.getElementById('listingFilter').addEventListener('change', render);
     document.getElementById('portalFilter').addEventListener('change', render);
