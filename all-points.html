@@ -57,6 +57,9 @@
     .inline-action { width: auto; margin: 6px 6px 0 0; display: inline-block; }
     .inline-action.danger { border-color: #7f1d1d; color: #fecaca; }
     .inline-action.danger.active { background: #ef4444; color: white; }
+    .rating-pill { width: auto; cursor: pointer; }
+    .rating-row-title { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .rating-remove { flex: 0 0 auto; width: 24px; height: 24px; padding: 0; border-radius: 999px; line-height: 1; }
     details.card summary { cursor: pointer; font-weight: 700; }
     a { color: #9bc3ff; }
     @media (max-width: 960px) { .wrap { grid-template-columns: 1fr; grid-template-rows: auto 60vh; } #map { height: 60vh; } }
@@ -254,6 +257,26 @@
       saveListingRating(id, { rating }).catch((error) => alert(`Could not save rating: ${error.message}`));
     };
 
+    window.editTopRatedListing = function(id, currentRating) {
+      const value = window.prompt('Rating 0-10', Number.isInteger(currentRating) ? String(currentRating) : '');
+      if (value === null) return;
+      const trimmed = value.trim();
+      if (!trimmed) {
+        saveListingRating(id, { rating: null }).catch((error) => alert(`Could not clear rating: ${error.message}`));
+        return;
+      }
+      const rating = Number(trimmed);
+      if (!Number.isInteger(rating) || rating < 0 || rating > 10) {
+        alert('Enter a whole number from 0 to 10.');
+        return;
+      }
+      saveListingRating(id, { rating }).catch((error) => alert(`Could not save rating: ${error.message}`));
+    };
+
+    window.removeTopRatedListing = function(id) {
+      saveListingRating(id, { rating: null }).catch((error) => alert(`Could not remove rating: ${error.message}`));
+    };
+
     window.toggleRejected = function(id) {
       const current = state.ratings[id] || {};
       saveListingRating(id, { rejected: !current.rejected }).catch((error) => alert(`Could not save rejection: ${error.message}`));
@@ -352,13 +375,22 @@
         <span class="pill">${escapeHtml(item.price || 'price unknown')}</span><span class="pill">${escapeHtml(item.rooms || 'rooms unknown')}</span>${extra}</div>`;
     }
 
+    function topRatedListingRow(item) {
+      const id = listingKey(item);
+      return `<div class="data-row">
+        <div class="rating-row-title"><b>${escapeHtml(item.title || 'Listing')}</b><button type="button" class="rating-remove" title="Remove from top rated listings" aria-label="Remove from top rated listings" onclick="removeTopRatedListing('${escapeJs(id)}')">X</button></div>
+        <span class="subtle">${escapeHtml(item.location || '')}${item.nearest_sl_stop ? ` · ${escapeHtml(item.nearest_sl_stop)} (${item.nearest_sl_stop_distance_m}m)` : ''}</span>${linkOrSource(item)}<br>
+        <span class="pill">${escapeHtml(item.price || 'price unknown')}</span><span class="pill">${escapeHtml(item.rooms || 'rooms unknown')}</span><button type="button" class="pill rating-pill" title="Change rating" onclick="editTopRatedListing('${escapeJs(id)}', ${item.user_rating})">${item.user_rating}/10</button>
+      </div>`;
+    }
+
     function renderRatingLists() {
       const rated = state.listings
         .filter((item) => Number.isInteger(item.user_rating) && !item.rejected)
         .sort((a, b) => (b.user_rating - a.user_rating) || String(a.title || '').localeCompare(String(b.title || '')))
         .slice(0, 10);
       document.getElementById('topRatedListings').innerHTML = rated.length
-        ? rated.map((item) => compactListingRow(item, `<span class="pill">${item.user_rating}/10</span>`)).join('')
+        ? rated.map((item) => topRatedListingRow(item)).join('')
         : `<span class="subtle">No rated listings yet. Open a listing marker and give it 0–10 points.</span>`;
 
       const rejected = state.listings
