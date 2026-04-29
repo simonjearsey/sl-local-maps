@@ -25,6 +25,7 @@ DEFAULT_HEMNET_SEARCH_URL = "https://www.hemnet.se/bostader?location_ids%5B%5D=1
 
 RENOVATED_RE = re.compile(r"\b(renoverad|renoverat|renoverade|renovering|nyrenoverad|nyrenoverat|totalrenoverad|totalrenoverat|topprenoverad|smakfullt renoverad|stambytt|helrenoverad|helrenoverat)\b", re.IGNORECASE)
 NEW_RE = re.compile(r"\b(nybyggnadsprojekt|nyproduktion|nybyggd|nybyggt|svanenmärkt|nytt grannskap)\b", re.IGNORECASE)
+ARRANDE_RE = re.compile(r"\barrende\b", re.IGNORECASE)
 
 
 @dataclass(frozen=True)
@@ -82,6 +83,21 @@ def classify_listing(record: dict[str, Any]) -> str:
     if RENOVATED_RE.search(text):
         return "renovated"
     return "old"
+
+
+def is_arrende_listing(record: dict[str, Any]) -> bool:
+    text = " ".join(
+        str(part)
+        for part in [
+            record.get("title", ""),
+            record.get("blurb", ""),
+            record.get("property_type", ""),
+            record.get("location", ""),
+            " ".join(record.get("tags") or []),
+        ]
+        if part
+    )
+    return bool(ARRANDE_RE.search(text))
 
 
 def category_label(category: str) -> str:
@@ -296,6 +312,8 @@ def canonical_rows() -> list[dict[str, Any]]:
     rows_by_key: dict[str, dict[str, Any]] = {}
 
     for raw in load_raw_sources():
+        if is_arrende_listing(raw):
+            continue
         source = raw.get("source", "unknown")
         title = (raw.get("title") or "").strip()
         location = (raw.get("location") or "").strip()

@@ -40,6 +40,10 @@
     h1, h2 { margin: 0 0 10px; }
     .legend { display: grid; gap: 8px; }
     .legend-item { display: flex; align-items: center; gap: 8px; }
+    .toggle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+    .toggle-item { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; background: #0f1730; }
+    .toggle-item input { width: auto; margin: 0; }
+    .toggle-item label { cursor: pointer; }
     .swatch { width: 12px; height: 12px; border-radius: 999px; display: inline-block; }
     .swatch.stop { background: var(--stop); box-shadow: 0 0 0 3px rgba(255,107,107,0.18); }
     .small { font-size: 12px; }
@@ -110,6 +114,13 @@
         <div class="row" style="margin-top:8px;">
           <input type="number" id="minRooms" placeholder="Min rooms" step="0.5" />
           <input type="number" id="maxRooms" placeholder="Max rooms" step="0.5" />
+        </div>
+        <div class="toggle-grid">
+          <div class="toggle-item"><input type="checkbox" id="showStops" checked /><label for="showStops">SL stop points</label></div>
+          <div class="toggle-item"><input type="checkbox" id="showRecent" checked /><label for="showRecent">New listing, first 7 days</label></div>
+          <div class="toggle-item"><input type="checkbox" id="showNew" checked /><label for="showNew">New construction</label></div>
+          <div class="toggle-item"><input type="checkbox" id="showOld" checked /><label for="showOld">Older stock</label></div>
+          <div class="toggle-item"><input type="checkbox" id="showRenovated" checked /><label for="showRenovated">Renovated</label></div>
         </div>
       </div>
 
@@ -329,6 +340,15 @@
       return href ? ` · <a href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">open</a>` : '';
     }
 
+    function listingActionLinks(item) {
+      const listingHref = item.listing_url || (item.listing_urls || [])[0];
+      const searchHref = item.source_url || (item.source_urls || [])[0];
+      const links = [];
+      if (listingHref) links.push(`<a href="${escapeHtml(listingHref)}" target="_blank" rel="noopener noreferrer">open listing</a>`);
+      if (searchHref) links.push(`<a href="${escapeHtml(searchHref)}" target="_blank" rel="noopener noreferrer">open search</a>`);
+      return links.length ? ` · ${links.join(' · ')}` : '';
+    }
+
     function renderListingSummaries() {
       fetch('./data/search-parameters.json', { cache: 'no-store' }).then((r) => r.json()).then((payload) => {
         const rows = payload.items || [];
@@ -342,7 +362,7 @@
       fetch('./data/new-objects.json', { cache: 'no-store' }).then((r) => r.json()).then((payload) => {
         const rows = payload.items || [];
         document.getElementById('newObjects').innerHTML = rows.length ? rows.map((item) => `
-          <div class="data-row"><b>${escapeHtml(item.title)}</b>${linkOrSource(item)}<br>
+          <div class="data-row"><b>${escapeHtml(item.title)}</b>${listingActionLinks(item)}<br>
           <span class="subtle">${escapeHtml(item.location)}${item.matched_name ? ` · near ${escapeHtml(item.matched_name)}` : ''}</span><br>
           <span class="pill">${escapeHtml(item.price || 'price unknown')}</span><span class="pill">${escapeHtml(item.rooms || 'rooms unknown')}</span><span class="pill">${escapeHtml(item.size || 'size unknown')}</span></div>
         `).join('') : `<span class="subtle">No new-construction objects in the current listing set.</span>`;
@@ -376,7 +396,7 @@
     }
 
     function compactListingRow(item, extra = '') {
-      return `<div class="data-row"><b>${escapeHtml(item.title || 'Listing')}</b>${linkOrSource(item)}<br>
+      return `<div class="data-row"><b>${escapeHtml(item.title || 'Listing')}</b>${listingActionLinks(item)}<br>
         <span class="subtle">${escapeHtml(item.location || '')}${item.nearest_sl_stop ? ` · ${escapeHtml(item.nearest_sl_stop)} (${item.nearest_sl_stop_distance_m}m)` : ''}</span><br>
         <span class="pill">${escapeHtml(item.price || 'price unknown')}</span><span class="pill">${escapeHtml(item.rooms || 'rooms unknown')}</span>${extra}</div>`;
     }
@@ -385,7 +405,7 @@
       const id = listingKey(item);
       return `<div class="data-row">
         <div class="rating-row-title"><b>${escapeHtml(item.title || 'Listing')}</b><button type="button" class="rating-remove" title="Remove from top rated listings" aria-label="Remove from top rated listings" onclick="removeTopRatedListing('${escapeJs(id)}')">X</button></div>
-        <span class="subtle">${escapeHtml(item.location || '')}${item.nearest_sl_stop ? ` · ${escapeHtml(item.nearest_sl_stop)} (${item.nearest_sl_stop_distance_m}m)` : ''}</span>${linkOrSource(item)}<br>
+        <span class="subtle">${escapeHtml(item.location || '')}${item.nearest_sl_stop ? ` · ${escapeHtml(item.nearest_sl_stop)} (${item.nearest_sl_stop_distance_m}m)` : ''}</span>${listingActionLinks(item)}<br>
         <span class="pill">${escapeHtml(item.price || 'price unknown')}</span><span class="pill">${escapeHtml(item.rooms || 'rooms unknown')}</span><button type="button" class="pill rating-pill" title="Change rating" onclick="editTopRatedListing('${escapeJs(id)}', ${item.user_rating})">${item.user_rating}/10</button>
       </div>`;
     }
@@ -417,9 +437,15 @@
       const maxPrice = parseInt(document.getElementById('maxPrice').value, 10) || Infinity;
       const minRooms = parseFloat(document.getElementById('minRooms').value) || 0;
       const maxRooms = parseFloat(document.getElementById('maxRooms').value) || Infinity;
+      const showStops = document.getElementById('showStops').checked;
+      const showRecent = document.getElementById('showRecent').checked;
+      const showNew = document.getElementById('showNew').checked;
+      const showOld = document.getElementById('showOld').checked;
+      const showRenovated = document.getElementById('showRenovated').checked;
 
       const visibleStops = state.stops.filter((point) => {
         if (listingMode === 'LISTINGS_ONLY') return false;
+        if (!showStops) return false;
         if (type !== 'ALL' && point.type !== type) return false;
         if (!q) return true;
         const haystack = `${point.name || ''} ${point.stop_area_name || ''} ${point.designation || ''} ${point.id || ''}`.toLowerCase();
@@ -428,8 +454,18 @@
 
       const visibleListings = state.listings.filter((item) => {
         if (listingMode === 'STOPS_ONLY') return false;
+        if (item.rejected) return false;
         const portals = item.sources || [item.source];
         if (portal !== 'ALL' && !portals.includes(portal)) return false;
+        if (isRecentListing(item)) {
+          if (!showRecent) return false;
+        } else if (item.category === 'new') {
+          if (!showNew) return false;
+        } else if (item.category === 'renovated') {
+          if (!showRenovated) return false;
+        } else if (!showOld) {
+          return false;
+        }
         
         const price = parseInt(item.price ? String(item.price).replace(/\D/g, '') : 0, 10) || 0;
         const rooms = parseFloat(String(item.rooms || '').replace(',', '.')) || 0;
@@ -469,6 +505,11 @@
       document.getElementById('maxPrice').value = '';
       document.getElementById('minRooms').value = '';
       document.getElementById('maxRooms').value = '';
+      document.getElementById('showStops').checked = true;
+      document.getElementById('showRecent').checked = true;
+      document.getElementById('showNew').checked = true;
+      document.getElementById('showOld').checked = true;
+      document.getElementById('showRenovated').checked = true;
       map.setView([59.3293, 18.0686], 10);
       render();
     }
@@ -532,6 +573,11 @@
     document.getElementById('type').addEventListener('change', render);
     document.getElementById('listingFilter').addEventListener('change', render);
     document.getElementById('portalFilter').addEventListener('change', render);
+    document.getElementById('showStops').addEventListener('change', render);
+    document.getElementById('showRecent').addEventListener('change', render);
+    document.getElementById('showNew').addEventListener('change', render);
+    document.getElementById('showOld').addEventListener('change', render);
+    document.getElementById('showRenovated').addEventListener('change', render);
 
     document.getElementById('stats').innerHTML = `
       <div class="stat"><span class="subtle">Stops</span><b id="countStops"></b></div>
